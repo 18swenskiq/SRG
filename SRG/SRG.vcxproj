@@ -143,7 +143,53 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Magick++\Blob.cpp" />
+    <ClCompile Include="Magick++\BlobRef.cpp" />
+    <ClCompile Include="Magick++\CoderInfo.cpp" />
+    <ClCompile Include="Magick++\Color.cpp" />
+    <ClCompile Include="Magick++\Drawable.cpp" />
+    <ClCompile Include="Magick++\Exception.cpp" />
+    <ClCompile Include="Magick++\Functions.cpp" />
+    <ClCompile Include="Magick++\Geometry.cpp" />
+    <ClCompile Include="Magick++\Image.cpp" />
+    <ClCompile Include="Magick++\ImageRef.cpp" />
+    <ClCompile Include="Magick++\Montage.cpp" />
+    <ClCompile Include="Magick++\Options.cpp" />
+    <ClCompile Include="Magick++\Pixels.cpp" />
+    <ClCompile Include="Magick++\ResourceLimits.cpp" />
+    <ClCompile Include="Magick++\SecurityPolicy.cpp" />
+    <ClCompile Include="Magick++\Statistic.cpp" />
+    <ClCompile Include="Magick++\STL.cpp" />
+    <ClCompile Include="Magick++\Thread.cpp" />
+    <ClCompile Include="Magick++\TypeMetric.cpp" />
     <ClCompile Include="SRG.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Magick++\Blob.h" />
+    <ClInclude Include="Magick++\BlobRef.h" />
+    <ClInclude Include="Magick++\CoderInfo.h" />
+    <ClInclude Include="Magick++\Color.h" />
+    <ClInclude Include="Magick++\Drawable.h" />
+    <ClInclude Include="Magick++\Exception.h" />
+    <ClInclude Include="Magick++\Functions.h" />
+    <ClInclude Include="Magick++\Geometry.h" />
+    <ClInclude Include="Magick++\Image.h" />
+    <ClInclude Include="Magick++\ImageRef.h" />
+    <ClInclude Include="Magick++\Include.h" />
+    <ClInclude Include="Magick++\Magick++.h" />
+    <ClInclude Include="Magick++\Montage.h" />
+    <ClInclude Include="Magick++\Options.h" />
+    <ClInclude Include="Magick++\Pixels.h" />
+    <ClInclude Include="Magick++\ResourceLimits.h" />
+    <ClInclude Include="Magick++\SecurityPolicy.h" />
+    <ClInclude Include="Magick++\Statistic.h" />
+    <ClInclude Include="Magick++\STL.h" />
+    <ClInclude Include="Magick++\Thread.h" />
+    <ClInclude Include="Magick++\TypeMetric.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Magick++\libMagick++.map" />
+    <None Include="Magick++\Magick++.pc.in" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

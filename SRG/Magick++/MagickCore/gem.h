@@ -21,21 +21,9 @@
 #include "./fx.h"
 #include "./random_.h"
 
-#if defined(__cplusplus) || defined(c_plusplus)
-extern "C" {
-#endif
+double ExpandAffine(const AffineMatrix *);
 
-extern MagickExport double
-  ExpandAffine(const AffineMatrix *);
-
-extern MagickExport void
-  ConvertHSLToRGB(const double,const double,const double,double *,double *,
-    double *),
-  ConvertRGBToHSL(const double,const double,const double,double *,double *,
-    double *);
-
-#if defined(__cplusplus) || defined(c_plusplus)
-}
-#endif
+void ConvertHSLToRGB(const double,const double,const double,double *,double *, double *),
+void ConvertRGBToHSL(const double,const double,const double,double *,double *,double *);
 
 #endif

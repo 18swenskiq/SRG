@@ -20,10 +20,6 @@
 
 #include "./blob.h"
 
-#if defined(__cplusplus) || defined(c_plusplus)
-extern "C" {
-#endif
-
 typedef enum
 {
   UndefinedCache,
@@ -34,48 +30,30 @@ typedef enum
   PingCache
 } CacheType;
 
-extern MagickExport CacheType
-  GetImagePixelCacheType(const Image *);
+CacheType GetImagePixelCacheType(const Image *);
 
-extern MagickExport const char
-  *GetPixelCacheFilename(const Image *);
+const char *GetPixelCacheFilename(const Image *);
 
-extern MagickExport const Quantum
-  *GetVirtualPixels(const Image *,const ssize_t,const ssize_t,const size_t,
-    const size_t,ExceptionInfo *) magick_hot_spot,
-  *GetVirtualPixelQueue(const Image *) magick_hot_spot;
+const Quantum* GetVirtualPixels(const Image*, const ssize_t, const ssize_t, const size_t, const size_t, ExceptionInfo*) magick_hot_spot;
+const Quantum *GetVirtualPixelQueue(const Image *) magick_hot_spot;
 
-extern MagickExport const void
-  *GetVirtualMetacontent(const Image *);
+const void *GetVirtualMetacontent(const Image *);
 
-extern MagickExport MagickBooleanType
-  GetOneAuthenticPixel(Image *,const ssize_t,const ssize_t,Quantum *,
-    ExceptionInfo *),
-  GetOneVirtualPixel(const Image *,const ssize_t,const ssize_t,Quantum *,
-    ExceptionInfo *),
-  GetOneVirtualPixelInfo(const Image *,const VirtualPixelMethod,
-    const ssize_t,const ssize_t,PixelInfo *,ExceptionInfo *),
-  PersistPixelCache(Image *,const char *,const MagickBooleanType,
-    MagickOffsetType *,ExceptionInfo *),
-  SyncAuthenticPixels(Image *,ExceptionInfo *) magick_hot_spot;
+MagickBooleanType GetOneAuthenticPixel(Image*, const ssize_t, const ssize_t, Quantum*, ExceptionInfo*);
+MagickBooleanType GetOneVirtualPixel(const Image*, const ssize_t, const ssize_t, Quantum*, ExceptionInfo*);
+MagickBooleanType GetOneVirtualPixelInfo(const Image*, const VirtualPixelMethod, const ssize_t, const ssize_t, PixelInfo*, ExceptionInfo*);
+MagickBooleanType PersistPixelCache(Image*, const char*, const MagickBooleanType, MagickOffsetType*, ExceptionInfo*);
+MagickBooleanType SyncAuthenticPixels(Image *,ExceptionInfo *) magick_hot_spot;
 
-extern MagickExport MagickSizeType
-  GetImageExtent(const Image *);
+MagickSizeType GetImageExtent(const Image *);
 
 extern MagickExport Quantum
-  *GetAuthenticPixels(Image *,const ssize_t,const ssize_t,const size_t,
-    const size_t,ExceptionInfo *) magick_hot_spot,
-  *GetAuthenticPixelQueue(const Image *) magick_hot_spot,
-  *QueueAuthenticPixels(Image *,const ssize_t,const ssize_t,const size_t,
-    const size_t,ExceptionInfo *) magick_hot_spot;
+Quantum* GetAuthenticPixels(Image*, const ssize_t, const ssize_t, const size_t, const size_t, ExceptionInfo*) magick_hot_spot;
+Quantum* GetAuthenticPixelQueue(const Image*) magick_hot_spot;
+Quantum *QueueAuthenticPixels(Image *,const ssize_t,const ssize_t,const size_t, const size_t,ExceptionInfo *) magick_hot_spot;
 
-extern MagickExport void
-  *AcquirePixelCachePixels(const Image *,size_t *,ExceptionInfo *),
-  *GetAuthenticMetacontent(const Image *),
-  *GetPixelCachePixels(Image *,MagickSizeType *,ExceptionInfo *);
-
-#if defined(__cplusplus) || defined(c_plusplus)
-}
-#endif
+void* AcquirePixelCachePixels(const Image*, size_t*, ExceptionInfo*);
+void* GetAuthenticMetacontent(const Image*);
+void *GetPixelCachePixels(Image *,MagickSizeType *,ExceptionInfo *);
 
 #endif

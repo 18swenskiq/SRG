@@ -214,51 +214,33 @@ typedef struct _CacheView
 /*
   Pixel method declarations.
 */
-extern MagickExport ChannelType
-  SetPixelChannelMask(Image *,const ChannelType);
+ChannelType SetPixelChannelMask(Image *,const ChannelType);
 
-extern MagickExport MagickBooleanType
-  ExportImagePixels(const Image *,const ssize_t,const ssize_t,const size_t,
-    const size_t,const char *,const StorageType,void *,ExceptionInfo *),
-  ImportImagePixels(Image *,const ssize_t,const ssize_t,const size_t,
-    const size_t,const char *,const StorageType,const void *,ExceptionInfo *),
-  InterpolatePixelChannel(const Image *magick_restrict,const CacheView_ *,
-    const PixelChannel,const PixelInterpolateMethod,const double,const double,
-    double *,ExceptionInfo *),
-  InterpolatePixelChannels(const Image *magick_restrict,const CacheView_ *,
-    const Image * magick_restrict,const PixelInterpolateMethod,const double,
-    const double,Quantum *,ExceptionInfo *),
-  InterpolatePixelInfo(const Image *,const CacheView_ *,
-    const PixelInterpolateMethod,const double,const double,PixelInfo *,
-    ExceptionInfo *),
-  IsFuzzyEquivalencePixel(const Image *,const Quantum *,const Image *,
-    const Quantum *) magick_attribute((__pure__)),
-  IsFuzzyEquivalencePixelInfo(const PixelInfo *,const PixelInfo *)
-    magick_attribute((__pure__)),
-  SetPixelMetaChannels(Image *,const size_t,ExceptionInfo *);
+MagickBooleanType ExportImagePixels(const Image*, const ssize_t, const ssize_t, const size_t, const size_t, const char*, const StorageType, void*, ExceptionInfo*);
+MagickBooleanType ImportImagePixels(Image*, const ssize_t, const ssize_t, const size_t, const size_t, const char*, const StorageType, const void*, ExceptionInfo*);
+MagickBooleanType InterpolatePixelChannel(const Image* magick_restrict, const CacheView_*, const PixelChannel, const PixelInterpolateMethod, const double, const double, double*, ExceptionInfo*);
+MagickBooleanType InterpolatePixelChannels(const Image* magick_restrict, const CacheView_*, const Image* magick_restrict, const PixelInterpolateMethod, const double, const double, Quantum*, ExceptionInfo*);
+MagickBooleanType InterpolatePixelInfo(const Image*, const CacheView_*, const PixelInterpolateMethod, const double, const double, PixelInfo*, ExceptionInfo*);
+MagickBooleanType IsFuzzyEquivalencePixel(const Image*, const Quantum*, const Image*, const Quantum*) magick_attribute((__pure__));
+MagickBooleanType IsFuzzyEquivalencePixelInfo(const PixelInfo*, const PixelInfo*) magick_attribute((__pure__));
+MagickBooleanType SetPixelMetaChannels(Image *,const size_t,ExceptionInfo *);
 
-extern MagickExport MagickRealType
-  GetPixelInfoIntensity(const Image *magick_restrict,
-    const PixelInfo *magick_restrict) magick_hot_spot,
-  GetPixelIntensity(const Image *magick_restrict,
-    const Quantum *magick_restrict) magick_hot_spot;
+MagickRealType GetPixelInfoIntensity(const Image* magick_restrict, const PixelInfo* magick_restrict) magick_hot_spot;
+MagickRealType GetPixelIntensity(const Image *magick_restrict, const Quantum *magick_restrict) magick_hot_spot;
 
-extern MagickExport PixelChannelMap
-  *AcquirePixelChannelMap(void),
-  *ClonePixelChannelMap(PixelChannelMap *),
-  *DestroyPixelChannelMap(PixelChannelMap *);
 
-extern MagickExport PixelInfo
-  *ClonePixelInfo(const PixelInfo *);
+PixelChannelMap* AcquirePixelChannelMap(void);
+PixelChannelMap* ClonePixelChannelMap(PixelChannelMap*);
+PixelChannelMap *DestroyPixelChannelMap(PixelChannelMap *);
 
-extern MagickExport MagickRealType
-  DecodePixelGamma(const MagickRealType) magick_hot_spot,
-  EncodePixelGamma(const MagickRealType) magick_hot_spot;
+PixelInfo *ClonePixelInfo(const PixelInfo *);
 
-extern MagickExport void
-  ConformPixelInfo(Image *,const PixelInfo *,PixelInfo *,ExceptionInfo *),
-  GetPixelInfo(const Image *,PixelInfo *),
-  InitializePixelChannelMap(Image *);
+MagickRealType DecodePixelGamma(const MagickRealType) magick_hot_spot;
+MagickRealType EncodePixelGamma(const MagickRealType) magick_hot_spot;
+
+void ConformPixelInfo(Image*, const PixelInfo*, PixelInfo*, ExceptionInfo*);
+void GetPixelInfo(const Image*, PixelInfo*);
+void InitializePixelChannelMap(Image *);
 
 #if defined(__cplusplus) || defined(c_plusplus)
 }

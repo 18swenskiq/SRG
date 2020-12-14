@@ -18,10 +18,6 @@
 #ifndef MAGICKCORE_IMAGE_H
 #define MAGICKCORE_IMAGE_H
 
-#if defined(__cplusplus) || defined(c_plusplus)
-extern "C" {
-#endif
-
 #define OpaqueAlpha  ((Quantum) QuantumRange)
 #define TransparentAlpha  ((Quantum) 0)
 
@@ -128,25 +124,25 @@ typedef struct _ChromaticityInfo
     white_point;
 } ChromaticityInfo;
 
-#include "blob.h"
-#include "colorspace.h"
-#include "cache-view.h"
-#include "color.h"
-#include "composite.h"
-#include "compress.h"
-#include "effect.h"
-#include "geometry.h"
-#include "layer.h"
-#include "locale_.h"
-#include "monitor.h"
-#include "pixel.h"
-#include "profile.h"
-#include "quantum.h"
-#include "resample.h"
-#include "resize.h"
-#include "semaphore.h"
-#include "stream.h"
-#include "timer.h"
+#include "./blob.h"
+#include "./colorspace.h"
+#include "./cache-view.h"
+#include "./color.h"
+#include "./composite.h"
+#include "./compress.h"
+#include "./effect.h"
+#include "./geometry.h"
+#include "./layer.h"
+#include "./locale_.h"
+#include "./monitor.h"
+#include "./pixel.h"
+#include "./profile.h"
+#include "./quantum.h"
+#include "./resample.h"
+#include "./resize.h"
+#include "./semaphore.h"
+#include "./stream.h"
+#include "./timer.h"
 
 struct _Image
 {
@@ -494,81 +490,61 @@ struct _ImageInfo
     matte_color;        /* matte (frame) color */
 };
 
-extern MagickExport ChannelType
-  SetImageChannelMask(Image *,const ChannelType);
+ChannelType SetImageChannelMask(Image *,const ChannelType);
 
-extern MagickExport ExceptionType
-  CatchImageException(Image *);
+ExceptionType CatchImageException(Image *);
 
-extern MagickExport FILE
-  *GetImageInfoFile(const ImageInfo *);
+FILE *GetImageInfoFile(const ImageInfo *);
 
-extern MagickExport Image
-  *AcquireImage(const ImageInfo *,ExceptionInfo *),
-  *AppendImages(const Image *,const MagickBooleanType,ExceptionInfo *),
-  *CloneImage(const Image *,const size_t,const size_t,const MagickBooleanType,
-    ExceptionInfo *),
-  *DestroyImage(Image *),
-  *GetImageMask(const Image *,const PixelMask,ExceptionInfo *),
-  *NewMagickImage(const ImageInfo *,const size_t,const size_t,const PixelInfo *,
-    ExceptionInfo *),
-  *ReferenceImage(Image *),
-  *SmushImages(const Image *,const MagickBooleanType,const ssize_t,
-    ExceptionInfo *);
+Image* AcquireImage(const ImageInfo*, ExceptionInfo*);
+Image* AppendImages(const Image*, const MagickBooleanType, ExceptionInfo*);
+Image* CloneImage(const Image*, const size_t, const size_t, const MagickBooleanType, ExceptionInfo*);
+Image* DestroyImage(Image*);
+Image* GetImageMask(const Image*, const PixelMask, ExceptionInfo*);
+Image* NewMagickImage(const ImageInfo*, const size_t, const size_t, const PixelInfo*, ExceptionInfo*);
+Image* ReferenceImage(Image*);
+Image *SmushImages(const Image *,const MagickBooleanType,const ssize_t, ExceptionInfo *);
 
-extern MagickExport ImageInfo
-  *AcquireImageInfo(void),
-  *CloneImageInfo(const ImageInfo *),
-  *DestroyImageInfo(ImageInfo *);
+ImageInfo* AcquireImageInfo(void);
+ImageInfo* CloneImageInfo(const ImageInfo*);
+ImageInfo* DestroyImageInfo(ImageInfo*);
 
-extern MagickExport MagickBooleanType
-  ClipImage(Image *,ExceptionInfo *),
-  ClipImagePath(Image *,const char *,const MagickBooleanType,ExceptionInfo *),
-  CopyImagePixels(Image *,const Image *,const RectangleInfo *,
-    const OffsetInfo *,ExceptionInfo *),
-  IsTaintImage(const Image *),
-  IsHighDynamicRangeImage(const Image *,ExceptionInfo *),
-  IsImageObject(const Image *),
-  ListMagickInfo(FILE *,ExceptionInfo *),
-  ModifyImage(Image **,ExceptionInfo *),
-  ResetImagePage(Image *,const char *),
-  ResetImagePixels(Image *,ExceptionInfo *),
-  SetImageAlpha(Image *,const Quantum,ExceptionInfo *),
-  SetImageBackgroundColor(Image *,ExceptionInfo *),
-  SetImageColor(Image *,const PixelInfo *,ExceptionInfo *),
-  SetImageExtent(Image *,const size_t,const size_t,ExceptionInfo *),
-  SetImageInfo(ImageInfo *,const unsigned int,ExceptionInfo *),
-  SetImageMask(Image *,const PixelMask type,const Image *,ExceptionInfo *),
-  SetImageRegionMask(Image *,const PixelMask type,const RectangleInfo *,
-    ExceptionInfo *),
-  SetImageStorageClass(Image *,const ClassType,ExceptionInfo *),
-  StripImage(Image *,ExceptionInfo *),
-  SyncImage(Image *,ExceptionInfo *),
-  SyncImageSettings(const ImageInfo *,Image *,ExceptionInfo *),
-  SyncImagesSettings(ImageInfo *,Image *,ExceptionInfo *);
+MagickBooleanType ClipImage(Image*, ExceptionInfo*);
+MagickBooleanType ClipImagePath(Image*, const char*, const MagickBooleanType, ExceptionInfo*);
+MagickBooleanType CopyImagePixels(Image*, const Image*, const RectangleInfo*, const OffsetInfo*, ExceptionInfo*);
+MagickBooleanType IsTaintImage(const Image*);
+MagickBooleanType IsHighDynamicRangeImage(const Image*, ExceptionInfo*);
+MagickBooleanType IsImageObject(const Image*);
+MagickBooleanType ListMagickInfo(FILE*, ExceptionInfo*);
+MagickBooleanType ModifyImage(Image**, ExceptionInfo*);
+MagickBooleanType ResetImagePage(Image*, const char*);
+MagickBooleanType ResetImagePixels(Image*, ExceptionInfo*);
+MagickBooleanType SetImageAlpha(Image*, const Quantum, ExceptionInfo*);
+MagickBooleanType SetImageBackgroundColor(Image*, ExceptionInfo*);
+MagickBooleanType SetImageColor(Image*, const PixelInfo*, ExceptionInfo*);
+MagickBooleanType SetImageExtent(Image*, const size_t, const size_t, ExceptionInfo*);
+MagickBooleanType SetImageInfo(ImageInfo*, const unsigned int, ExceptionInfo*);
+MagickBooleanType SetImageMask(Image*, const PixelMask type, const Image*, ExceptionInfo*);
+MagickBooleanType SetImageRegionMask(Image*, const PixelMask type, const RectangleInfo*, ExceptionInfo*);
+MagickBooleanType SetImageStorageClass(Image*, const ClassType, ExceptionInfo*);
+MagickBooleanType StripImage(Image*, ExceptionInfo*);
+MagickBooleanType SyncImage(Image*, ExceptionInfo*);
+MagickBooleanType SyncImageSettings(const ImageInfo*, Image*, ExceptionInfo*);
+MagickBooleanType SyncImagesSettings(ImageInfo *,Image *,ExceptionInfo *);
 
-extern MagickExport size_t
-  InterpretImageFilename(const ImageInfo *,Image *,const char *,int,char *,
-    ExceptionInfo *);
+size_t InterpretImageFilename(const ImageInfo *,Image *,const char *,int,char *, ExceptionInfo *);
 
-extern MagickExport ssize_t
-  GetImageReferenceCount(Image *);
+ssize_t GetImageReferenceCount(Image *);
 
-extern MagickExport VirtualPixelMethod
-  GetImageVirtualPixelMethod(const Image *),
-  SetImageVirtualPixelMethod(Image *,const VirtualPixelMethod,ExceptionInfo *);
+VirtualPixelMethod GetImageVirtualPixelMethod(const Image*);
+VirtualPixelMethod SetImageVirtualPixelMethod(Image *,const VirtualPixelMethod,ExceptionInfo *);
 
-extern MagickExport void
-  AcquireNextImage(const ImageInfo *,Image *,ExceptionInfo *),
-  DestroyImagePixels(Image *),
-  DisassociateImageStream(Image *),
-  GetImageInfo(ImageInfo *),
-  SetImageInfoBlob(ImageInfo *,const void *,const size_t),
-  SetImageInfoFile(ImageInfo *,FILE *),
-  SetImageInfoCustomStream(ImageInfo *,CustomStreamInfo *);
-
-#if defined(__cplusplus) || defined(c_plusplus)
-}
-#endif
+void AcquireNextImage(const ImageInfo*, Image*, ExceptionInfo*);
+void DestroyImagePixels(Image*);
+void DisassociateImageStream(Image*);
+void GetImageInfo(ImageInfo*);
+void SetImageInfoBlob(ImageInfo*, const void*, const size_t);
+void SetImageInfoFile(ImageInfo*, FILE*);
+void SetImageInfoCustomStream(ImageInfo *,CustomStreamInfo *);
 
 #endif

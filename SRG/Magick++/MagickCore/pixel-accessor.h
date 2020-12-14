@@ -27,10 +27,6 @@
 #include "./image.h"
 #include "./memory_.h"
 
-#if defined(__cplusplus) || defined(c_plusplus)
-extern "C" {
-#endif
-
 #undef index
 
 static inline Quantum ClampPixel(const MagickRealType pixel)
@@ -46,48 +42,41 @@ static inline Quantum ClampPixel(const MagickRealType pixel)
 #endif
 }
 
-static inline Quantum GetPixela(const Image *magick_restrict image,
-  const Quantum *magick_restrict pixel)
+static inline Quantum GetPixela(const Image *magick_restrict image, const Quantum *magick_restrict pixel)
 {
   return(pixel[image->channel_map[aPixelChannel].offset]);
 }
 
-static inline Quantum GetPixelAlpha(const Image *magick_restrict image,
-  const Quantum *magick_restrict pixel)
+static inline Quantum GetPixelAlpha(const Image *magick_restrict image, const Quantum *magick_restrict pixel)
 {
   if (image->channel_map[AlphaPixelChannel].traits == UndefinedPixelTrait)
     return(OpaqueAlpha);
   return(pixel[image->channel_map[AlphaPixelChannel].offset]);
 }
 
-static inline PixelTrait GetPixelAlphaTraits(
-  const Image *magick_restrict image)
+static inline PixelTrait GetPixelAlphaTraits(const Image *magick_restrict image)
 {
   return(image->channel_map[AlphaPixelChannel].traits);
 }
 
-static inline Quantum GetPixelb(const Image *magick_restrict image,
-  const Quantum *magick_restrict pixel)
+static inline Quantum GetPixelb(const Image *magick_restrict image, const Quantum *magick_restrict pixel)
 {
   return(pixel[image->channel_map[bPixelChannel].offset]);
 }
 
-static inline Quantum GetPixelBlack(const Image *magick_restrict image,
-  const Quantum *magick_restrict pixel)
+static inline Quantum GetPixelBlack(const Image *magick_restrict image, const Quantum *magick_restrict pixel)
 {
   if (image->channel_map[BlackPixelChannel].traits == UndefinedPixelTrait)
     return((Quantum) 0);
   return(pixel[image->channel_map[BlackPixelChannel].offset]);
 }
 
-static inline PixelTrait GetPixelBlackTraits(
-  const Image *magick_restrict image)
+static inline PixelTrait GetPixelBlackTraits(const Image *magick_restrict image)
 {
   return(image->channel_map[BlackPixelChannel].traits);
 }
 
-static inline Quantum GetPixelBlue(const Image *magick_restrict image,
-  const Quantum *magick_restrict pixel)
+static inline Quantum GetPixelBlue(const Image *magick_restrict image, const Quantum *magick_restrict pixel)
 {
   return(pixel[image->channel_map[BluePixelChannel].offset]);
 }
@@ -97,8 +86,7 @@ static inline PixelTrait GetPixelBlueTraits(const Image *magick_restrict image)
   return(image->channel_map[BluePixelChannel].traits);
 }
 
-static inline Quantum GetPixelCb(const Image *magick_restrict image,
-  const Quantum *magick_restrict pixel)
+static inline Quantum GetPixelCb(const Image *magick_restrict image, const Quantum *magick_restrict pixel)
 {
   return(pixel[image->channel_map[CbPixelChannel].offset]);
 }
@@ -108,28 +96,24 @@ static inline PixelTrait GetPixelCbTraits(const Image *magick_restrict image)
   return(image->channel_map[CbPixelChannel].traits);
 }
 
-static inline Quantum GetPixelChannel(const Image *magick_restrict image,
-  const PixelChannel channel,const Quantum *magick_restrict pixel)
+static inline Quantum GetPixelChannel(const Image *magick_restrict image, const PixelChannel channel,const Quantum *magick_restrict pixel)
 {
   if (image->channel_map[channel].traits == UndefinedPixelTrait)
     return((Quantum) 0);
   return(pixel[image->channel_map[channel].offset]);
 }
 
-static inline PixelChannel GetPixelChannelChannel(
-  const Image *magick_restrict image,const ssize_t offset)
+static inline PixelChannel GetPixelChannelChannel(const Image *magick_restrict image,const ssize_t offset)
 {
   return(image->channel_map[offset].channel);
 }
 
-static inline ssize_t GetPixelChannelOffset(const Image *magick_restrict image,
-  const PixelChannel channel)
+static inline ssize_t GetPixelChannelOffset(const Image *magick_restrict image, const PixelChannel channel)
 {
   return(image->channel_map[channel].offset);
 }
 
-static inline PixelTrait GetPixelChannelTraits(
-  const Image *magick_restrict image,const PixelChannel channel)
+static inline PixelTrait GetPixelChannelTraits(const Image *magick_restrict image,const PixelChannel channel)
 {
   return(image->channel_map[channel].traits);
 }
@@ -139,16 +123,14 @@ static inline size_t GetPixelChannels(const Image *magick_restrict image)
   return(image->number_channels);
 }
 
-static inline Quantum GetPixelCompositeMask(const Image *magick_restrict image,
-  const Quantum *magick_restrict pixel)
+static inline Quantum GetPixelCompositeMask(const Image *magick_restrict image, const Quantum *magick_restrict pixel)
 {
   if (image->channel_map[CompositeMaskPixelChannel].traits == UndefinedPixelTrait)
     return((Quantum) QuantumRange);
   return(pixel[image->channel_map[CompositeMaskPixelChannel].offset]);
 }
 
-static inline Quantum GetPixelCr(const Image *magick_restrict image,
-  const Quantum *magick_restrict pixel)
+static inline Quantum GetPixelCr(const Image *magick_restrict image, const Quantum *magick_restrict pixel)
 {
   return(pixel[image->channel_map[CrPixelChannel].offset]);
 }
@@ -158,8 +140,7 @@ static inline PixelTrait GetPixelCrTraits(const Image *magick_restrict image)
   return(image->channel_map[CrPixelChannel].traits);
 }
 
-static inline Quantum GetPixelCyan(const Image *magick_restrict image,
-  const Quantum *magick_restrict pixel)
+static inline Quantum GetPixelCyan(const Image *magick_restrict image, const Quantum *magick_restrict pixel)
 {
   return(pixel[image->channel_map[CyanPixelChannel].offset]);
 }
@@ -169,8 +150,7 @@ static inline PixelTrait GetPixelCyanTraits(const Image *magick_restrict image)
   return(image->channel_map[CyanPixelChannel].traits);
 }
 
-static inline Quantum GetPixelGray(const Image *magick_restrict image,
-  const Quantum *magick_restrict pixel)
+static inline Quantum GetPixelGray(const Image *magick_restrict image, const Quantum *magick_restrict pixel)
 {
   return(pixel[image->channel_map[GrayPixelChannel].offset]);
 }
@@ -180,28 +160,24 @@ static inline PixelTrait GetPixelGrayTraits(const Image *magick_restrict image)
   return(image->channel_map[GrayPixelChannel].traits);
 }
 
-static inline Quantum GetPixelGreen(const Image *magick_restrict image,
-  const Quantum *magick_restrict pixel)
+static inline Quantum GetPixelGreen(const Image *magick_restrict image, const Quantum *magick_restrict pixel)
 {
   return(pixel[image->channel_map[GreenPixelChannel].offset]);
 }
 
-static inline PixelTrait GetPixelGreenTraits(
-  const Image *magick_restrict image)
+static inline PixelTrait GetPixelGreenTraits(const Image *magick_restrict image)
 {
   return(image->channel_map[GreenPixelChannel].traits);
 }
 
-static inline Quantum GetPixelIndex(const Image *magick_restrict image,
-  const Quantum *magick_restrict pixel)
+static inline Quantum GetPixelIndex(const Image *magick_restrict image, const Quantum *magick_restrict pixel)
 {
   if (image->channel_map[IndexPixelChannel].traits == UndefinedPixelTrait)
     return((Quantum) 0);
   return(pixel[image->channel_map[IndexPixelChannel].offset]);
 }
 
-static inline PixelTrait GetPixelIndexTraits(
-  const Image *magick_restrict image)
+static inline PixelTrait GetPixelIndexTraits(const Image *magick_restrict image)
 {
   return(image->channel_map[IndexPixelChannel].traits);
 }
@@ -892,9 +868,5 @@ static inline void SetPixelYTraits(Image *image,const PixelTrait traits)
 {
   image->channel_map[YPixelChannel].traits=traits;
 }
-
-#if defined(__cplusplus) || defined(c_plusplus)
-}
-#endif
 
 #endif

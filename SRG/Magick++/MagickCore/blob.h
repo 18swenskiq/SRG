@@ -43,55 +43,47 @@ typedef MagickOffsetType
   (*CustomStreamTeller)(void *);
 
 typedef struct _CustomStreamInfo
-  CustomStreamInfo;
+CustomStreamInfo;
 
 #include "./image.h"
 #include "./stream.h"
 
-extern MagickExport CustomStreamInfo
-  *AcquireCustomStreamInfo(ExceptionInfo *),
-  *DestroyCustomStreamInfo(CustomStreamInfo *);
+CustomStreamInfo *AcquireCustomStreamInfo(ExceptionInfo *);
+CustomStreamInfo *DestroyCustomStreamInfo(CustomStreamInfo *);
 
-extern MagickExport FILE
-  *GetBlobFileHandle(const Image *) magick_attribute((__pure__));
+FILE *GetBlobFileHandle(const Image *) magick_attribute((__pure__));
 
-extern MagickExport Image
-  *BlobToImage(const ImageInfo *,const void *,const size_t,ExceptionInfo *),
-  *PingBlob(const ImageInfo *,const void *,const size_t,ExceptionInfo *),
-  *CustomStreamToImage(const ImageInfo *,ExceptionInfo *);
+Image *BlobToImage(const ImageInfo*, const void*, const size_t, ExceptionInfo*);
+Image *PingBlob(const ImageInfo*, const void*, const size_t, ExceptionInfo*);
+Image *CustomStreamToImage(const ImageInfo*, ExceptionInfo*);
 
-extern MagickExport MagickBooleanType
-  BlobToFile(char *,const void *,const size_t,ExceptionInfo *),
-  FileToImage(Image *,const char *,ExceptionInfo *),
-  GetBlobError(const Image *) magick_attribute((__pure__)),
-  ImageToFile(Image *,char *,ExceptionInfo *),
-  InjectImageBlob(const ImageInfo *,Image *,Image *,const char *,
-    ExceptionInfo *),
-  IsBlobExempt(const Image *) magick_attribute((__pure__)),
-  IsBlobSeekable(const Image *) magick_attribute((__pure__)),
-  IsBlobTemporary(const Image *) magick_attribute((__pure__));
+MagickBooleanType BlobToFile(char*, const void*, const size_t, ExceptionInfo*);
+MagickBooleanType FileToImage(Image*, const char*, ExceptionInfo*);
+MagickBooleanType GetBlobError(const Image*) magick_attribute((__pure__));
+MagickBooleanType ImageToFile(Image*, char*, ExceptionInfo*);
+MagickBooleanType InjectImageBlob(const ImageInfo*, Image*, Image*, const char*, ExceptionInfo*);
+MagickBooleanType IsBlobExempt(const Image*) magick_attribute((__pure__));
+MagickBooleanType IsBlobSeekable(const Image*) magick_attribute((__pure__));
+MagickBooleanType IsBlobTemporary(const Image *) magick_attribute((__pure__));
 
-extern MagickExport MagickSizeType
-  GetBlobSize(const Image *);
+MagickSizeType GetBlobSize(const Image *);
 
-extern MagickExport StreamHandler
-  GetBlobStreamHandler(const Image *) magick_attribute((__pure__));
+StreamHandler GetBlobStreamHandler(const Image *) magick_attribute((__pure__));
 
-extern MagickExport void
-  *GetBlobStreamData(const Image *) magick_attribute((__pure__)),
-  DestroyBlob(Image *),
-  DuplicateBlob(Image *,const Image *),
-  *FileToBlob(const char *,const size_t,size_t *,ExceptionInfo *),
-  *ImageToBlob(const ImageInfo *,Image *,size_t *,ExceptionInfo *),
-  ImageToCustomStream(const ImageInfo *,Image *,ExceptionInfo *),
-  *ImagesToBlob(const ImageInfo *,Image *,size_t *,ExceptionInfo *),
-  ImagesToCustomStream(const ImageInfo *,Image *,ExceptionInfo *),
-  SetBlobExempt(Image *,const MagickBooleanType),
-  SetCustomStreamData(CustomStreamInfo *,void *),
-  SetCustomStreamReader(CustomStreamInfo *,CustomStreamHandler),
-  SetCustomStreamSeeker(CustomStreamInfo *,CustomStreamSeeker),
-  SetCustomStreamTeller(CustomStreamInfo *,CustomStreamTeller),
-  SetCustomStreamWriter(CustomStreamInfo *,CustomStreamHandler);
+void* GetBlobStreamData(const Image*) magick_attribute((__pure__));
+void DestroyBlob(Image*);
+void DuplicateBlob(Image*, const Image*);
+void* FileToBlob(const char*, const size_t, size_t*, ExceptionInfo*);
+void* ImageToBlob(const ImageInfo*, Image*, size_t*, ExceptionInfo*);
+void ImageToCustomStream(const ImageInfo*, Image*, ExceptionInfo*);
+void* ImagesToBlob(const ImageInfo*, Image*, size_t*, ExceptionInfo*);
+void ImagesToCustomStream(const ImageInfo*, Image*, ExceptionInfo*);
+void SetBlobExempt(Image*, const MagickBooleanType);
+void SetCustomStreamData(CustomStreamInfo*, void*);
+void SetCustomStreamReader(CustomStreamInfo*, CustomStreamHandler);
+void SetCustomStreamSeeker(CustomStreamInfo*, CustomStreamSeeker);
+void SetCustomStreamTeller(CustomStreamInfo*, CustomStreamTeller);
+void SetCustomStreamWriter(CustomStreamInfo *,CustomStreamHandler);
 
 #if defined(__cplusplus) || defined(c_plusplus)
 }

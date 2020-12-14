@@ -18,10 +18,6 @@
 #ifndef MAGICKCORE_COLORSPACE_H
 #define MAGICKCORE_COLORSPACE_H
 
-#if defined(__cplusplus) || defined(c_plusplus)
-extern "C" {
-#endif
-
 typedef enum
 {
   UndefinedColorspace,
@@ -61,17 +57,12 @@ typedef enum
   JzazbzColorspace
 } ColorspaceType;
 
-extern MagickExport ColorspaceType
-  GetImageColorspaceType(const Image *,ExceptionInfo *);
+ColorspaceType GetImageColorspaceType(const Image *,ExceptionInfo *);
 
-extern MagickExport MagickBooleanType
-  SetImageColorspace(Image *,const ColorspaceType,ExceptionInfo *),
-  SetImageGray(Image *,ExceptionInfo *),
-  SetImageMonochrome(Image *,ExceptionInfo *),
-  TransformImageColorspace(Image *,const ColorspaceType,ExceptionInfo *);
+MagickBooleanType SetImageColorspace(Image*, const ColorspaceType, ExceptionInfo*);
+MagickBooleanType SetImageGray(Image*, ExceptionInfo*);
+MagickBooleanType SetImageMonochrome(Image*, ExceptionInfo*);
+MagickBooleanType TransformImageColorspace(Image *,const ColorspaceType,ExceptionInfo *);
 
-#if defined(__cplusplus) || defined(c_plusplus)
-}
-#endif
 
 #endif

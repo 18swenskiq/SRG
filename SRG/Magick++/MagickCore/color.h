@@ -21,9 +21,6 @@
 #include "./pixel.h"
 #include "./exception.h"
 
-#if defined(__cplusplus) || defined(c_plusplus)
-extern "C" {
-#endif
 
 typedef enum
 {
@@ -65,29 +62,18 @@ typedef struct _ErrorInfo
     normalized_maximum_error;
 } ErrorInfo;
 
-extern MagickExport char
-  **GetColorList(const char *,size_t *,ExceptionInfo *);
+char **GetColorList(const char *,size_t *,ExceptionInfo *);
 
-extern MagickExport const ColorInfo
-  *GetColorInfo(const char *,ExceptionInfo *),
-  **GetColorInfoList(const char *,size_t *,ExceptionInfo *);
+ColorInfo* GetColorInfo(const char*, ExceptionInfo*);
+ColorInfo **GetColorInfoList(const char *,size_t *,ExceptionInfo *);
 
-extern MagickExport MagickBooleanType
-  IsEquivalentImage(const Image *,const Image *,ssize_t *x,ssize_t *y,
-    ExceptionInfo *),
-  ListColorInfo(FILE *,ExceptionInfo *),
-  QueryColorCompliance(const char *,const ComplianceType,PixelInfo *,
-    ExceptionInfo *),
-  QueryColorname(const Image *,const PixelInfo *,const ComplianceType,
-    char *,ExceptionInfo *);
+MagickBooleanType IsEquivalentImage(const Image*, const Image*, ssize_t* x, ssize_t* y, ExceptionInfo*);
+MagickBooleanType ListColorInfo(FILE*, ExceptionInfo*);
+MagickBooleanType QueryColorCompliance(const char*, const ComplianceType, PixelInfo*, ExceptionInfo*);
+MagickBooleanType QueryColorname(const Image *,const PixelInfo *,const ComplianceType, char *,ExceptionInfo *);
 
-extern MagickExport void
-  ConcatenateColorComponent(const PixelInfo *,const PixelChannel,
-    const ComplianceType,char *),
-  GetColorTuple(const PixelInfo *,const MagickBooleanType,char *);
+void ConcatenateColorComponent(const PixelInfo*, const PixelChannel, const ComplianceType, char*);
+void GetColorTuple(const PixelInfo *,const MagickBooleanType,char *);
 
-#if defined(__cplusplus) || defined(c_plusplus)
-}
-#endif
 
 #endif

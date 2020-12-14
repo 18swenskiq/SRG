@@ -135,30 +135,23 @@ typedef struct _RectangleInfo
     y;
 } RectangleInfo;
 
-extern MagickExport char
-  *GetPageGeometry(const char *);
+char *GetPageGeometry(const char *);
 
-extern MagickExport MagickBooleanType
-  IsGeometry(const char *),
-  IsSceneGeometry(const char *,const MagickBooleanType);
+MagickBooleanType IsGeometry(const char*);
+MagickBooleanType IsSceneGeometry(const char *,const MagickBooleanType);
 
-extern MagickExport MagickStatusType
-  GetGeometry(const char *,ssize_t *,ssize_t *,size_t *,size_t *),
-  ParseAbsoluteGeometry(const char *,RectangleInfo *),
-  ParseAffineGeometry(const char *,AffineMatrix *,ExceptionInfo *),
-  ParseGeometry(const char *,GeometryInfo *),
-  ParseGravityGeometry(const Image *,const char *,RectangleInfo *,
-    ExceptionInfo *),
-  ParseMetaGeometry(const char *,ssize_t *,ssize_t *,size_t *,size_t *),
-  ParsePageGeometry(const Image *,const char *,RectangleInfo *,ExceptionInfo *),
-  ParseRegionGeometry(const Image *,const char *,RectangleInfo *,
-    ExceptionInfo *);
+MagickStatusType GetGeometry(const char*, ssize_t*, ssize_t*, size_t*, size_t*);
+MagickStatusType ParseAbsoluteGeometry(const char*, RectangleInfo*);
+MagickStatusType ParseAffineGeometry(const char*, AffineMatrix*, ExceptionInfo*);
+MagickStatusType ParseGeometry(const char*, GeometryInfo*);
+MagickStatusType ParseGravityGeometry(const Image*, const char*, RectangleInfo*, ExceptionInfo*);
+MagickStatusType ParseMetaGeometry(const char*, ssize_t*, ssize_t*, size_t*, size_t*);
+MagickStatusType ParsePageGeometry(const Image*, const char*, RectangleInfo*, ExceptionInfo*);
+MagickStatusType ParseRegionGeometry(const Image*, const char*, RectangleInfo*, ExceptionInfo*);
 
-extern MagickExport void
-  GravityAdjustGeometry(const size_t,const size_t,const GravityType,
-    RectangleInfo *),
-  SetGeometry(const Image *,RectangleInfo *),
-  SetGeometryInfo(GeometryInfo *);
+void GravityAdjustGeometry(const size_t, const size_t, const GravityType, RectangleInfo*);
+void SetGeometry(const Image*, RectangleInfo*);
+void SetGeometryInfo(GeometryInfo *);
 
 #if defined(__cplusplus) || defined(c_plusplus)
 }

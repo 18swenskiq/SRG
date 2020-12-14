@@ -18,24 +18,16 @@
 #ifndef MAGICKCORE_SEMAPHORE_H
 #define MAGICKCORE_SEMAPHORE_H
 
-#if defined(__cplusplus) || defined(c_plusplus)
-extern "C" {
-#endif
 
 typedef struct SemaphoreInfo
   SemaphoreInfo;
 
-extern MagickExport SemaphoreInfo
-  *AcquireSemaphoreInfo(void);
+SemaphoreInfo *AcquireSemaphoreInfo(void);
 
-extern MagickExport void
-  ActivateSemaphoreInfo(SemaphoreInfo **),
-  LockSemaphoreInfo(SemaphoreInfo *),
-  RelinquishSemaphoreInfo(SemaphoreInfo **),
-  UnlockSemaphoreInfo(SemaphoreInfo *);
+void ActivateSemaphoreInfo(SemaphoreInfo**);
+void LockSemaphoreInfo(SemaphoreInfo*);
+void RelinquishSemaphoreInfo(SemaphoreInfo**);
+void UnlockSemaphoreInfo(SemaphoreInfo *);
 
-#if defined(__cplusplus) || defined(c_plusplus)
-}
-#endif
 
 #endif

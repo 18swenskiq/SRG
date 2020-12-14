@@ -20,10 +20,6 @@
 
 #include "./semaphore.h"
 
-#if defined(__cplusplus) || defined(c_plusplus)
-extern "C" {
-#endif
-
 typedef enum
 {
   UndefinedException,
@@ -132,45 +128,30 @@ typedef void
 typedef void
   (*WarningHandler)(const ExceptionType,const char *,const char *);
 
-extern MagickExport char
-  *GetExceptionMessage(const int);
+char *GetExceptionMessage(const int);
 
-extern MagickExport const char
-  *GetLocaleExceptionMessage(const ExceptionType,const char *);
+const char *GetLocaleExceptionMessage(const ExceptionType,const char *);
 
-extern MagickExport ErrorHandler
-  SetErrorHandler(ErrorHandler);
+ErrorHandler SetErrorHandler(ErrorHandler);
 
-extern MagickExport ExceptionInfo
-  *AcquireExceptionInfo(void),
-  *CloneExceptionInfo(ExceptionInfo *),
-  *DestroyExceptionInfo(ExceptionInfo *);
+ExceptionInfo* AcquireExceptionInfo(void);
+ExceptionInfo* CloneExceptionInfo(ExceptionInfo*);
+ExceptionInfo *DestroyExceptionInfo(ExceptionInfo *);
 
-extern MagickExport FatalErrorHandler
-  SetFatalErrorHandler(FatalErrorHandler);
+FatalErrorHandler SetFatalErrorHandler(FatalErrorHandler);
 
-extern MagickExport MagickBooleanType
-  ThrowException(ExceptionInfo *,const ExceptionType,const char *,
-    const char *),
-  ThrowMagickExceptionList(ExceptionInfo *,const char *,const char *,
-    const size_t,const ExceptionType,const char *,const char *,va_list),
-  ThrowMagickException(ExceptionInfo *,const char *,const char *,const size_t,
-    const ExceptionType,const char *,const char *,...)
-    magick_attribute((__format__ (__printf__,7,8)));
+MagickBooleanType ThrowException(ExceptionInfo*, const ExceptionType, const char*, const char*);
+MagickBooleanType ThrowMagickExceptionList(ExceptionInfo*, const char*, const char*, const size_t, const ExceptionType, const char*, const char*, va_list);
+MagickBooleanType ThrowMagickException(ExceptionInfo *,const char *,const char *,const size_t, const ExceptionType,const char *,const char *,...) magick_attribute((__format__ (__printf__,7,8)));
 
-extern MagickExport void
-  CatchException(ExceptionInfo *),
-  ClearMagickException(ExceptionInfo *),
-  InheritException(ExceptionInfo *,const ExceptionInfo *),
-  MagickError(const ExceptionType,const char *,const char *),
-  MagickFatalError(const ExceptionType,const char *,const char *),
-  MagickWarning(const ExceptionType,const char *,const char *);
+void CatchException(ExceptionInfo*);
+void ClearMagickException(ExceptionInfo*);
+void InheritException(ExceptionInfo*, const ExceptionInfo*);
+void MagickError(const ExceptionType, const char*, const char*);
+void MagickFatalError(const ExceptionType, const char*, const char*);
+void MagickWarning(const ExceptionType,const char *,const char *);
 
-extern MagickExport WarningHandler
-  SetWarningHandler(WarningHandler);
+WarningHandler SetWarningHandler(WarningHandler);
 
-#if defined(__cplusplus) || defined(c_plusplus)
-}
-#endif
 
 #endif

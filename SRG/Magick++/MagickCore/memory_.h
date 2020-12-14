@@ -21,9 +21,6 @@
 #include <errno.h>
 #include <assert.h>
 
-#if defined(__cplusplus) || defined(c_plusplus)
-extern "C" {
-#endif
 
 typedef struct _MemoryInfo
   MemoryInfo;
@@ -35,41 +32,28 @@ typedef void
   *(*AcquireAlignedMemoryHandler)(const size_t,const size_t),
   (*RelinquishAlignedMemoryHandler)(void *);
 
-extern MagickExport MemoryInfo
-  *AcquireVirtualMemory(const size_t,const size_t) magick_alloc_sizes(1,2),
-  *RelinquishVirtualMemory(MemoryInfo *);
+MemoryInfo* AcquireVirtualMemory(const size_t, const size_t) magick_alloc_sizes(1, 2);
+MemoryInfo* RelinquishVirtualMemory(MemoryInfo*);
 
-extern MagickExport size_t
-  GetMaxMemoryRequest(void);
+size_t GetMaxMemoryRequest(void);
 
-extern MagickExport void
-  *AcquireAlignedMemory(const size_t,const size_t)
-    magick_attribute((__malloc__)) magick_alloc_sizes(1,2),
-  *AcquireMagickMemory(const size_t) magick_attribute((__malloc__))
-    magick_alloc_size(1),
-  *AcquireCriticalMemory(const size_t),
-  *AcquireQuantumMemory(const size_t,const size_t)
-    magick_attribute((__malloc__)) magick_alloc_sizes(1,2),
-  *CopyMagickMemory(void *magick_restrict,const void *magick_restrict,
-    const size_t) magick_attribute((__nonnull__)),
-  DestroyMagickMemory(void),
-  GetMagickMemoryMethods(AcquireMemoryHandler *,ResizeMemoryHandler *,
-    DestroyMemoryHandler *),
-  *GetVirtualMemoryBlob(const MemoryInfo *),
-  *RelinquishAlignedMemory(void *),
-  *RelinquishMagickMemory(void *),
-  *ResetMagickMemory(void *,int,const size_t),
-  *ResizeMagickMemory(void *,const size_t)
-    magick_attribute((__malloc__)) magick_alloc_size(2),
-  *ResizeQuantumMemory(void *,const size_t,const size_t)
-    magick_attribute((__malloc__)) magick_alloc_sizes(2,3),
-  SetMagickAlignedMemoryMethods(AcquireAlignedMemoryHandler,
-    RelinquishAlignedMemoryHandler),
-  SetMagickMemoryMethods(AcquireMemoryHandler,ResizeMemoryHandler,
-    DestroyMemoryHandler);
+void* AcquireAlignedMemory(const size_t, const size_t) magick_attribute((__malloc__)) magick_alloc_sizes(1, 2);
+void* AcquireMagickMemory(const size_t) magick_attribute((__malloc__)) magick_alloc_size(1);
+void* AcquireCriticalMemory(const size_t);
+void* AcquireQuantumMemory(const size_t, const size_t) magick_attribute((__malloc__)) magick_alloc_sizes(1, 2);
+void* CopyMagickMemory(void* magick_restrict, const void* magick_restrict, const size_t) magick_attribute((__nonnull__));
+void DestroyMagickMemory(void);
+void GetMagickMemoryMethods(AcquireMemoryHandler*, ResizeMemoryHandler*, DestroyMemoryHandler*);
+void* GetVirtualMemoryBlob(const MemoryInfo*);
+void* RelinquishAlignedMemory(void*);
+void* RelinquishMagickMemory(void*);
+void* ResetMagickMemory(void*, int, const size_t);
+void* ResizeMagickMemory(void*, const size_t) magick_attribute((__malloc__)) magick_alloc_size(2);
+void* ResizeQuantumMemory(void*, const size_t, const size_t) magick_attribute((__malloc__)) magick_alloc_sizes(2, 3);
+void SetMagickAlignedMemoryMethods(AcquireAlignedMemoryHandler, RelinquishAlignedMemoryHandler);
+void SetMagickMemoryMethods(AcquireMemoryHandler,ResizeMemoryHandler, DestroyMemoryHandler);
 
-static inline MagickBooleanType HeapOverflowSanityCheck(
-  const size_t count,const size_t quantum)
+static inline MagickBooleanType HeapOverflowSanityCheck(const size_t count,const size_t quantum)
 {
   if ((count == 0) || (quantum == 0))
     return(MagickTrue);
@@ -100,8 +84,5 @@ static inline MagickBooleanType HeapOverflowSanityCheckGetSize(
   return(MagickFalse);
 }
 
-#if defined(__cplusplus) || defined(c_plusplus)
-}
-#endif
 
 #endif

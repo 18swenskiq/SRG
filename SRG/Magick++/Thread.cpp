@@ -9,8 +9,8 @@
 #define MAGICKCORE_IMPLEMENTATION  1
 #define MAGICK_PLUSPLUS_IMPLEMENTATION 1
 
-#include "Magick++/Thread.h"
-#include "Magick++/Exception.h"
+#include "Thread.h"
+#include "Exception.h"
 
 #include <string.h>
 

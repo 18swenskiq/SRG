@@ -11,9 +11,9 @@
 #define MAGICKCORE_IMPLEMENTATION  1
 #define MAGICK_PLUSPLUS_IMPLEMENTATION 1
 
-#include "Magick++/ImageRef.h"
-#include "Magick++/Exception.h"
-#include "Magick++/Options.h"
+#include "ImageRef.h"
+#include "Exception.h"
+#include "Options.h"
 
 Magick::ImageRef::ImageRef(void)
   : _image(0),

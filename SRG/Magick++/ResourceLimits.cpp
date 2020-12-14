@@ -8,7 +8,7 @@
 #define MAGICKCORE_IMPLEMENTATION  1
 #define MAGICK_PLUSPLUS_IMPLEMENTATION 1
 
-#include "Magick++/ResourceLimits.h"
+#include "ResourceLimits.h"
 
 void Magick::ResourceLimits::area(const MagickSizeType limit_)
 {

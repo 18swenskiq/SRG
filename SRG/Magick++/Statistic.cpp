@@ -8,10 +8,10 @@
 #define MAGICKCORE_IMPLEMENTATION  1
 #define MAGICK_PLUSPLUS_IMPLEMENTATION  1
 
-#include "Magick++/Include.h"
-#include "Magick++/Exception.h"
-#include "Magick++/Statistic.h"
-#include "Magick++/Image.h"
+#include "Include.h"
+#include "Exception.h"
+#include "Statistic.h"
+#include "Image.h"
 
 using namespace std;
 

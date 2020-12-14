@@ -9,13 +9,13 @@
 #define MAGICKCORE_IMPLEMENTATION
 #define MAGICK_PLUSPLUS_IMPLEMENTATION 1
 
-#include "Magick++/Include.h"
+#include "Include.h"
 #include <string>
 
 using namespace std;
 
-#include "Magick++/Color.h"
-#include "Magick++/Exception.h"
+#include "Color.h"
+#include "Exception.h"
 
 MagickPPExport int Magick::operator == (const Magick::Color &left_,
   const Magick::Color &right_)

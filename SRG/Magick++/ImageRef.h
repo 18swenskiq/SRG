@@ -13,8 +13,8 @@
 #define Magick_ImageRef_header
 
 #include <string>
-#include "Magick++/Include.h"
-#include "Magick++/Thread.h"
+#include "Include.h"
+#include "Thread.h"
 
 namespace Magick
 {

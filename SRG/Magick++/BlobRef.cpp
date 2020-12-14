@@ -9,10 +9,10 @@
 #define MAGICKCORE_IMPLEMENTATION  1
 #define MAGICK_PLUSPLUS_IMPLEMENTATION 1
 
-#include "Magick++/Include.h"
-#include "Magick++/BlobRef.h"
-#include "Magick++/Exception.h"
-#include "Magick++/Thread.h"
+#include "Include.h"
+#include "BlobRef.h"
+#include "Exception.h"
+#include "Thread.h"
 
 #include <string.h>
 

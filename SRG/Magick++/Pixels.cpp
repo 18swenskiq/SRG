@@ -10,11 +10,11 @@
 #define MAGICK_PLUSPLUS_IMPLEMENTATION 1
 
 #include <cstring>
-#include "Magick++/Include.h"
+#include "Include.h"
 #include <string> // This is here to compile with Visual C++
-#include "Magick++/Thread.h"
-#include "Magick++/Exception.h"
-#include "Magick++/Pixels.h"
+#include "Thread.h"
+#include "Exception.h"
+#include "Pixels.h"
 
 Magick::Pixels::Pixels(Magick::Image &image_)
   : _image(image_),

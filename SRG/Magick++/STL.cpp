@@ -9,9 +9,9 @@
 #define MAGICKCORE_IMPLEMENTATION  1
 #define MAGICK_PLUSPLUS_IMPLEMENTATION 1
 
-#include <Magick++/Functions.h>
-#include <Magick++/Image.h>
-#include <Magick++/STL.h>
+#include "Functions.h"
+#include "Image.h"
+#include "STL.h"
 
 // Adaptive-blur image with specified blur factor
 Magick::adaptiveBlurImage::adaptiveBlurImage( const double radius_,

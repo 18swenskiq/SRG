@@ -42,7 +42,7 @@
 //
 namespace MagickCore
 {
-#include <MagickCore/MagickCore.h>
+#include "MagickCore/MagickCore.h"
 #include <MagickWand/MagickWand.h>
 #undef inline // Remove possible definition from config.h
 

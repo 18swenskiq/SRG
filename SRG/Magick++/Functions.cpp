@@ -9,13 +9,13 @@
 #define MAGICKCORE_IMPLEMENTATION  1
 #define MAGICK_PLUSPLUS_IMPLEMENTATION 1
 
-#include "Magick++/Include.h"
+#include "Include.h"
 #include <string>
 
 using namespace std;
 
-#include "Magick++/Functions.h"
-#include "Magick++/Exception.h"
+#include "Functions.h"
+#include "Exception.h"
 
 static bool magick_initialized=false;
 

@@ -10,12 +10,12 @@
 #define MAGICK_PLUSPLUS_IMPLEMENTATION 1
 #define MAGICK_DRAWABLE_IMPLEMENTATION
 
-#include "Magick++/Include.h"
+#include "Include.h"
 #include <math.h>
 #include <string>
 
-#include "Magick++/Drawable.h"
-#include "Magick++/Image.h"
+#include "Drawable.h"
+#include "Image.h"
 
 using namespace std;
 

@@ -9,9 +9,9 @@
 #define MAGICKCORE_IMPLEMENTATION  1
 #define MAGICK_PLUSPLUS_IMPLEMENTATION  1
 
-#include "Magick++/Include.h"
-#include "Magick++/CoderInfo.h"
-#include "Magick++/Exception.h"
+#include "Include.h"
+#include "CoderInfo.h"
+#include "Exception.h"
 
 using namespace std;
 

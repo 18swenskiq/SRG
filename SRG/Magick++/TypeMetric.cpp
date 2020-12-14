@@ -9,8 +9,8 @@
 #define MAGICKCORE_IMPLEMENTATION  1
 #define MAGICK_PLUSPLUS_IMPLEMENTATION 1
 
-#include "Magick++/TypeMetric.h"
-#include "Magick++/Drawable.h"
+#include "TypeMetric.h"
+#include "Drawable.h"
 #include <string.h>
 
 Magick::TypeMetric::TypeMetric(void)

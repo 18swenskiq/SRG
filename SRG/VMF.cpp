@@ -65,7 +65,32 @@ VMF::VMF(KeyValuesQueue *kv)
 	// End read visgroups
 
 	// Read viewsettings
+	if (localq.front()->second != "viewsettings")
+	{
+		std::cout << "MALFORMED VMF" << std::endl;
+		return;
+	}
 
+	localq.pop(); // viewsettings
+	localq.pop(); // {
+	localq.pop(); // bsnaptogrid
+	viewsettings.data.emplace("bSnapToGrid", localq.front()->second);
+	localq.pop(); // bsnaptogrid value
+	localq.pop(); // bshowgrid
+	viewsettings.data.emplace("bShowGrid", localq.front()->second);
+	localq.pop(); // bshowgrid value
+	localq.pop(); // bshowlogicalgrid
+	viewsettings.data.emplace("bShowLogicalGrid", localq.front()->second);
+	localq.pop(); // bshowlogicalgrid value
+	localq.pop(); // ngridspacing
+	viewsettings.data.emplace("nGridSpacing", localq.front()->second);
+	localq.pop(); // ngridspacing value
+	localq.pop(); // bshow3dgrid
+	viewsettings.data.emplace("bShow3DGrid", localq.front()->second);
+	localq.pop(); // bshow3dgrid value
+	localq.pop(); // }
+
+	// end viewsettings read
 
 
 	// Debug print
@@ -85,6 +110,15 @@ VMF::VMF(KeyValuesQueue *kv)
 		visgroups.at(i).PrintVisgroup();
 		std::cout << std::endl;
 	}
+	std::cout << std::endl;
+
+	// print settings
+	std::cout << "View Settings:" << std::endl;
+	for (it = viewsettings.data.begin(); it != viewsettings.data.end(); it++)
+	{
+		std::cout << '"' << it->first << '"' << "    " << '"' << it->second << '"' << std::endl;
+	}
+	std::cout << std::endl;
 }
 
 VMF::Visgroup VMF::GetVisgroupFromQueue(std::queue<std::pair<KeyValuesQueue::KVToken, std::string>*>& qref)

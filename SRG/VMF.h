@@ -15,44 +15,44 @@ public:
 		std::map<std::string, std::string> data;
 	};
 
-	class Cordon : GenericMap
+	class Cordon : public GenericMap
 	{
 	public:
 		GenericMap box;
 	};
 
-	class Cordons : GenericMap
+	class Cordons : public GenericMap
 	{
 	public:
 		std::vector<Cordon> cordon;
 	};
 
-	class DispRowInfo : GenericMap
+	class DispRowInfo : public GenericMap
 	{
 	public:
 		std::string name;
 	};
 
-	class DispInfo : GenericMap
+	class DispInfo : public GenericMap
 	{
 	public:
 		std::vector<DispRowInfo> disprowinfo;
 	};
 
-	class Side : GenericMap
+	class Side : public GenericMap
 	{
 	public:
 		DispInfo dispinfo;
 	};
 
-	class Solid : GenericMap
+	class Solid : public GenericMap
 	{
 	public:
 		std::vector<Side> sides;
 		GenericMap editor;
 	};
 
-	class Entity : GenericMap
+	class Entity : public GenericMap
 	{
 	public:
 		GenericMap connections;
@@ -60,20 +60,20 @@ public:
 		GenericMap editor;
 	};
 
-	class Group : GenericMap
+	class Group : public GenericMap
 	{
 	public:
 		GenericMap editor;
 	};
 
-	class World : GenericMap
+	class World : public GenericMap
 	{
 	public:
 		std::vector<Solid> solids;
 		std::vector<Group> groups;
 	};
 
-	class Visgroup : GenericMap
+	class Visgroup : public GenericMap
 	{
 	public:
 		std::vector<Visgroup> child_visgroups;
@@ -87,4 +87,7 @@ public:
 	// We can skip hidden items. if its hidden we don't care about it
 	GenericMap cameras;
 	Cordons cordons;
+
+private:
+	Visgroup GetVisgroupFromQueue(std::queue<std::pair<KeyValuesQueue::KVToken, std::string>*>& qcopy);
 };

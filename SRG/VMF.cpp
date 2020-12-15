@@ -37,11 +37,87 @@ VMF::VMF(KeyValuesQueue *kv)
 	}
 	// End read versioninfo
 
+	// Read visgroups
+	localq.pop();	// }
+	localq.pop();	// visgroups
+	localq.pop();	// {
+
+	while ((temppair = localq.front())->first != KeyValuesQueue::KVToken::T_ObjectEnd)
+	{
+		if (temppair->second == "visgroup")
+		{
+			Visgroup newgroup = GetVisgroupFromQueue(localq);
+			visgroups.push_back(newgroup);
+			if (localq.front()->second == "}") localq.pop();
+		}
+		else if (temppair->second == "viewsettings")
+		{
+			break;
+		}
+		else
+		{
+			std::cout << "MALFORMED VMF" << std::endl;
+			std::cout << localq.size() << std::endl;
+			return;
+		}
+	}
+
+	// End read visgroups
+
+
+	// Debug print
+	// print versioninfo
 	std::cout << "VersionInfo: " << std::endl;
 	std::map<std::string, std::string>::iterator it;
 	for (it = versioninfo.data.begin(); it != versioninfo.data.end(); it++)
 	{
 		std::cout << '"' << it->first << '"' << "    " << '"' << it->second << '"' << std::endl;
 	}
+	std::cout << std::endl;
 
+	// print visgroups
+	std::cout << "Visgroups:" << std::endl;
+	for (int i = 0; i < visgroups.size(); i++)
+	{
+		Visgroup thisgroup = visgroups.at(i);
+		for (it = thisgroup.data.begin(); it != thisgroup.data.end(); it++)
+		{
+			std::cout << '"' << it->first << '"' << "    " << '"' << it->second << '"' << std::endl;
+		}
+		if (thisgroup.child_visgroups.size() > 0)
+		{
+			for (int j = 0; j < thisgroup.child_visgroups.size(); j++)
+			{
+				std::map<std::string, std::string>::iterator it2;
+				Visgroup localgroup = thisgroup.child_visgroups.at(j);
+				for (it2 = localgroup.data.begin(); it2 != localgroup.data.end(); it2++)
+				{
+					std::cout << '\t"' << it->first << '"' << "    " << '"' << it->second << '"' << std::endl;
+				}
+			}
+		}
+		std::cout << std::endl;
+	}
+}
+
+VMF::Visgroup VMF::GetVisgroupFromQueue(std::queue<std::pair<KeyValuesQueue::KVToken, std::string>*>& qref)
+{
+	Visgroup thisgroup;
+	qref.pop();	// visgroup
+	qref.pop();	// {
+	qref.pop(); // name
+	thisgroup.data.emplace("name", qref.front()->second);
+	qref.pop();	// name value
+	qref.pop(); // visgroupid
+	thisgroup.data.emplace("visgroupid", qref.front()->second);
+	qref.pop();	// visgroupid value
+	qref.pop();	// color
+	thisgroup.data.emplace("color", qref.front()->second);
+	qref.pop(); // color value
+	if (qref.front()->second != "visgroup") qref.pop(); // }
+	while(qref.front()->second == "visgroup")
+	{
+		thisgroup.child_visgroups.push_back(GetVisgroupFromQueue(qref));
+	}
+	return thisgroup;
 }

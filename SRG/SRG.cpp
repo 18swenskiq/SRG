@@ -13,7 +13,8 @@ int main()
 {
     std::fstream myfile;
     //std::string VMFPATH = "H:\\DriveBackup\\Maps\\analog\\de_analog_005.vmf";
-    std::string VMFPATH = "H:\\OneDrive\\Frostbite\\VMF\\ski_160.vmf";
+    //std::string VMFPATH = "H:\\OneDrive\\Frostbite\\VMF\\ski_160.vmf";
+    std::string VMFPATH = "C:\\Users\\Quinton\\Google Drive\\Desktop\\ski_160.vmf";
     myfile.open(VMFPATH, std::ios::in);
     if (!myfile.is_open())
     {

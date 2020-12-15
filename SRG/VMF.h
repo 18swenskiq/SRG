@@ -77,6 +77,24 @@ public:
 	{
 	public:
 		std::vector<Visgroup> child_visgroups;
+		void PrintVisgroup(int indentation_level = 0)
+		{
+			std::map<std::string, std::string>::iterator it;
+			for (it = data.begin(); it != data.end(); it++)
+			{
+				for (int x = 0; x < indentation_level; x++) std::cout << "--";
+				std::cout << '"' << it->first << '"' << "    " << '"' << it->second << '"' << std::endl;
+			}
+			if (child_visgroups.size() > 0)
+			{
+				for (int x = 0; x < indentation_level; x++) std::cout << "--";
+				std::cout << "Children: " << std::endl;
+				for (int i = 0; i < child_visgroups.size(); i++)
+				{
+					child_visgroups.at(i).PrintVisgroup(indentation_level + 1);
+				}
+			}
+		}
 	};
 public:
 	GenericMap versioninfo;

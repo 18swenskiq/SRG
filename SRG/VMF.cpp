@@ -64,6 +64,9 @@ VMF::VMF(KeyValuesQueue *kv)
 
 	// End read visgroups
 
+	// Read viewsettings
+
+
 
 	// Debug print
 	// print versioninfo
@@ -79,23 +82,7 @@ VMF::VMF(KeyValuesQueue *kv)
 	std::cout << "Visgroups:" << std::endl;
 	for (int i = 0; i < visgroups.size(); i++)
 	{
-		Visgroup thisgroup = visgroups.at(i);
-		for (it = thisgroup.data.begin(); it != thisgroup.data.end(); it++)
-		{
-			std::cout << '"' << it->first << '"' << "    " << '"' << it->second << '"' << std::endl;
-		}
-		if (thisgroup.child_visgroups.size() > 0)
-		{
-			for (int j = 0; j < thisgroup.child_visgroups.size(); j++)
-			{
-				std::map<std::string, std::string>::iterator it2;
-				Visgroup localgroup = thisgroup.child_visgroups.at(j);
-				for (it2 = localgroup.data.begin(); it2 != localgroup.data.end(); it2++)
-				{
-					std::cout << '\t"' << it->first << '"' << "    " << '"' << it->second << '"' << std::endl;
-				}
-			}
-		}
+		visgroups.at(i).PrintVisgroup();
 		std::cout << std::endl;
 	}
 }
@@ -115,9 +102,11 @@ VMF::Visgroup VMF::GetVisgroupFromQueue(std::queue<std::pair<KeyValuesQueue::KVT
 	thisgroup.data.emplace("color", qref.front()->second);
 	qref.pop(); // color value
 	if (qref.front()->second != "visgroup") qref.pop(); // }
-	while(qref.front()->second == "visgroup")
-	{
-		thisgroup.child_visgroups.push_back(GetVisgroupFromQueue(qref));
+	else {
+		while (qref.front()->second == "visgroup")
+		{
+			thisgroup.child_visgroups.push_back(GetVisgroupFromQueue(qref));
+		}
 	}
 	return thisgroup;
 }

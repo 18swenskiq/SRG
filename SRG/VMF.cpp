@@ -92,6 +92,17 @@ VMF::VMF(KeyValuesQueue *kv)
 
 	// end viewsettings read
 
+	// read world
+	if (localq.front()->second != "world")
+	{
+		std::cout << "MALFORMED VMF" << std::endl;
+		return;
+	}
+	localq.pop(); // world
+	localq.pop(); // {
+	localq.pop(); // id
+	world.
+
 
 	// Debug print
 	// print versioninfo

@@ -45,9 +45,10 @@ public:
 		DispInfo dispinfo;
 	};
 
-	class Solid : public GenericMap
+	class Solid
 	{
 	public:
+		std::pair<std::string, std::string> id;
 		std::vector<Side> sides;
 		GenericMap editor;
 	};
@@ -69,6 +70,7 @@ public:
 	class World : public GenericMap
 	{
 	public:
+		std::vector<Solid> hiddens;
 		std::vector<Solid> solids;
 		std::vector<Group> groups;
 	};

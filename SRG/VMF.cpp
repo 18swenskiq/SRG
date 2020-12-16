@@ -101,8 +101,118 @@ VMF::VMF(KeyValuesQueue *kv)
 	localq.pop(); // world
 	localq.pop(); // {
 	localq.pop(); // id
-	world.
+	world.data.emplace("id", localq.front()->second);
+	localq.pop(); // id value
+	localq.pop(); // mapversion
+	world.data.emplace("mapversion", localq.front()->second);
+	localq.pop(); // mapversion value
+	localq.pop(); // classname
+	world.data.emplace("classname", localq.front()->second);
+	localq.pop(); // classname value
+	localq.pop(); // detailmaterial
+	world.data.emplace("detailmaterial", localq.front()->second);
+	localq.pop(); // detailmaterial value
+	localq.pop(); // detailvbsp
+	world.data.emplace("detailvbsp", localq.front()->second);
+	localq.pop(); // detailvbsp value
+	localq.pop(); // maxpropscreenwidth
+	world.data.emplace("maxpropscreenwidth", localq.front()->second);
+	localq.pop(); // maxpropscreenwidth value
+	localq.pop(); // skyname
+	world.data.emplace("skyname", localq.front()->second);
+	localq.pop(); // skyname value
 
+	// next in queue should be solid, but we have to iterate through
+	while (localq.front()->second != "}")
+	{
+		if (localq.front()->second == "solid")
+		{
+			// read solid
+			localq.pop(); // solid
+			localq.pop(); // {
+			localq.pop(); // id
+			Solid newsolid;
+			newsolid.id.first = "id";
+			newsolid.id.second = localq.front()->second;
+			localq.pop(); // id value
+
+			// read sides iteratively
+			while (localq.front()->second == "side")
+			{
+				Side newside;
+				localq.pop(); // side
+				localq.pop(); // {
+				localq.pop(); // id
+				newside.data.emplace("id", localq.front()->second);
+				localq.pop(); // id value
+				localq.pop(); // plane
+				newside.data.emplace("plane", localq.front()->second);
+				localq.pop(); // plane value
+				localq.pop(); // material;
+				newside.data.emplace("material", localq.front()->second);
+				localq.pop(); // material value
+				localq.pop(); // uaxis
+				newside.data.emplace("uaxis", localq.front()->second);
+				localq.pop(); // vuaxis value
+				localq.pop(); // vaxis
+				newside.data.emplace("vaxis", localq.front()->second);
+				localq.pop(); // vaxis value
+				localq.pop(); // rotation
+				newside.data.emplace("rotation", localq.front()->second);
+				localq.pop(); // rotation value
+				localq.pop(); // lightmapscale
+				newside.data.emplace("lightmapscale", localq.front()->second);
+				localq.pop(); // lightmapscale value
+				localq.pop(); // smoothing groups
+				newside.data.emplace("smoothing_groups", localq.front()->second);
+				localq.pop(); // smoothing group value
+				if (localq.front()->second == "dispinfo")
+				{
+					// read dispinfo here
+					localq.pop(); // dispinfo
+					localq.pop(); // {
+					while (localq.front()->second != "normals")
+					{
+						holder1 = localq.front()->second;
+						localq.pop();
+						holder2 = localq.front()->second;
+						localq.pop();
+						newside.dispinfo.data.emplace(holder1, holder2);
+					}
+					// read disp info rows
+					while (localq.front()->second != "}")
+					{
+						DispRowInfo dri;
+						dri.name = localq.front()->second;
+						localq.pop();
+						localq.pop();
+						while (localq.front()->second != "}")
+						{
+							holder1 = localq.front()->second;
+							localq.pop();
+							holder2 = localq.front()->second;
+							localq.pop();
+							dri.data.emplace(holder1, holder2);
+						}
+						localq.pop(); // }
+						newside.dispinfo.disprowinfo = dri;
+					}
+					localq.pop(); // }
+					newsolid.sides.push_back(newside);
+					localq.pop(); // }
+					continue;
+				}
+				else
+				{
+					// if we're here, this isn't a displacement face
+					localq.pop(); // }
+					newsolid.sides.push_back(newside);
+					continue;
+				}
+			}
+
+		}
+	}
 
 	// Debug print
 	// print versioninfo
@@ -123,7 +233,7 @@ VMF::VMF(KeyValuesQueue *kv)
 	}
 	std::cout << std::endl;
 
-	// print settings
+	// print viewsettings
 	std::cout << "View Settings:" << std::endl;
 	for (it = viewsettings.data.begin(); it != viewsettings.data.end(); it++)
 	{

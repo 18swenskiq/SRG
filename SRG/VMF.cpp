@@ -121,12 +121,13 @@ VMF::VMF(KeyValuesQueue *kv)
 	localq.pop(); // skyname
 	world.data.emplace("skyname", localq.front()->second);
 	localq.pop(); // skyname value
-
+	int iterator = 0;
 	// next in queue should be solid, but we have to iterate through
 	while (localq.front()->second != "}")
 	{
 		if (localq.front()->second == "solid")
 		{
+			std::cout << "Reading solid..." << std::endl;
 			// read solid
 			localq.pop(); // solid
 			localq.pop(); // {
@@ -134,6 +135,7 @@ VMF::VMF(KeyValuesQueue *kv)
 			Solid newsolid;
 			newsolid.id.first = "id";
 			newsolid.id.second = localq.front()->second;
+			std::cout << "Solid #" << newsolid.id.second << std::endl;
 			localq.pop(); // id value
 
 			// read sides iteratively
@@ -195,7 +197,7 @@ VMF::VMF(KeyValuesQueue *kv)
 							dri.data.emplace(holder1, holder2);
 						}
 						localq.pop(); // }
-						newside.dispinfo.disprowinfo = dri;
+						newside.dispinfo.disprowinfo.push_back(dri);
 					}
 					localq.pop(); // }
 					newsolid.sides.push_back(newside);
@@ -207,10 +209,45 @@ VMF::VMF(KeyValuesQueue *kv)
 					// if we're here, this isn't a displacement face
 					localq.pop(); // }
 					newsolid.sides.push_back(newside);
+					if (localq.front()->second == "editor")
+					{
+						localq.pop(); // editor
+						localq.pop(); // {
+						while (localq.front()->second != "}")
+						{
+							holder1 = localq.front()->second;
+							localq.pop();
+							holder2 = localq.front()->second;
+							localq.pop();
+							newsolid.editor.data.emplace(holder1, holder2);
+						}
+						localq.pop(); // }
+						localq.pop(); // }
+						break;
+					}
 					continue;
 				}
 			}
 
+
+		}
+		else if (localq.front()->second == "hidden")
+		{
+			// we can skip anything hidden so let's do a little hack
+			int cil = 1; // current indentation level
+			localq.pop(); // hidden
+			localq.pop(); // {
+			while (cil != 0)
+			{
+				if (localq.front()->second == "{") cil++;
+				if (localq.front()->second == "}") cil--;
+				localq.pop();
+			}
+		}
+		else
+		{
+			std::cout << "Matched none" << std::endl;
+			std::cout << "Token: " << localq.front()->second << std::endl;
 		}
 	}
 

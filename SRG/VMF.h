@@ -48,7 +48,7 @@ public:
 	class Solid
 	{
 	public:
-		std::pair<std::string, std::string> id;
+		std::string id;
 		std::vector<Side> sides;
 		GenericMap editor;
 	};
@@ -70,7 +70,6 @@ public:
 	class World : public GenericMap
 	{
 	public:
-		std::vector<Solid> hiddens;
 		std::vector<Solid> solids;
 		std::vector<Group> groups;
 	};
@@ -79,35 +78,22 @@ public:
 	{
 	public:
 		std::vector<Visgroup> child_visgroups;
-		void PrintVisgroup(int indentation_level = 0)
-		{
-			std::map<std::string, std::string>::iterator it;
-			for (it = data.begin(); it != data.end(); it++)
-			{
-				for (int x = 0; x < indentation_level; x++) std::cout << "--";
-				std::cout << '"' << it->first << '"' << "    " << '"' << it->second << '"' << std::endl;
-			}
-			if (child_visgroups.size() > 0)
-			{
-				for (int x = 0; x < indentation_level; x++) std::cout << "--";
-				std::cout << "Children: " << std::endl;
-				for (int i = 0; i < child_visgroups.size(); i++)
-				{
-					child_visgroups.at(i).PrintVisgroup(indentation_level + 1);
-				}
-			}
-		}
+		void PrintVisgroup(int indentation_level);
 	};
 public:
 	GenericMap versioninfo;
 	std::vector<Visgroup> visgroups;
 	GenericMap viewsettings;
 	World world;
-	std::vector<Entity> entity;
+	std::vector<Entity> entities;
 	// We can skip hidden items. if its hidden we don't care about it
 	GenericMap cameras;
 	Cordons cordons;
 
 private:
 	Visgroup GetVisgroupFromQueue(std::queue<std::pair<KeyValuesQueue::KVToken, std::string>*>& qcopy);
+	Solid GetSolidFromQueue(std::queue<std::pair<KeyValuesQueue::KVToken, std::string>*>& qref);
+	Side GetSideFromQueue(std::queue<std::pair<KeyValuesQueue::KVToken, std::string>*>& qref);
+	void AddTokenPairsToMapFromQueueUntilString(std::map<std::string, std::string>& inputmap, std::string hitstring, std::queue<std::pair<KeyValuesQueue::KVToken, std::string>*>& qref);
+	void AddTokenPairsToMapFromQueueUntilKVType(std::map<std::string, std::string>& inputmap, KeyValuesQueue::KVToken kvtoken, std::queue<std::pair<KeyValuesQueue::KVToken, std::string>*>& qref);
 };

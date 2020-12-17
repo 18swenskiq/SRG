@@ -16,8 +16,8 @@ int main()
     std::cout << "Squidski's Radar Generator; Version " << PROGVERSION << std::endl;
 
     std::fstream myfile;
-    std::string VMFPATH = "H:\\DriveBackup\\Maps\\analog\\de_analog_005.vmf";
-    //std::string VMFPATH = "H:\\OneDrive\\Frostbite\\VMF\\ski_160.vmf";
+    //std::string VMFPATH = "H:\\DriveBackup\\Maps\\analog\\de_analog_005.vmf";
+    std::string VMFPATH = "H:\\OneDrive\\Frostbite\\VMF\\ski_160.vmf";
     //std::string VMFPATH = "C:\\Users\\Quinton\\Google Drive\\Desktop\\ski_160.vmf";
     std::cout << "Opening VMF..." << std::endl;
     myfile.open(VMFPATH, std::ios::in);
@@ -42,4 +42,5 @@ int main()
 
     std::cout << "Parsing tokens..." << std::endl;
     VMF *vmf = new VMF(kv);
+    vmf->world.
 }

@@ -127,7 +127,6 @@ VMF::VMF(KeyValuesQueue *kv)
 	{
 		if (localq.front()->second == "solid")
 		{
-			std::cout << "Reading solid..." << std::endl;
 			// read solid
 			localq.pop(); // solid
 			localq.pop(); // {
@@ -135,7 +134,6 @@ VMF::VMF(KeyValuesQueue *kv)
 			Solid newsolid;
 			newsolid.id.first = "id";
 			newsolid.id.second = localq.front()->second;
-			std::cout << "Solid #" << newsolid.id.second << std::endl;
 			localq.pop(); // id value
 
 			// read sides iteratively
@@ -202,6 +200,19 @@ VMF::VMF(KeyValuesQueue *kv)
 					localq.pop(); // }
 					newsolid.sides.push_back(newside);
 					localq.pop(); // }
+					if (localq.front()->second == "editor")
+					{
+						localq.pop(); // editor
+						localq.pop(); // {
+						while (localq.front()->second != "}")
+						{
+							holder1 = localq.front()->second;
+							localq.pop();
+							holder2 = localq.front()->second;
+							localq.pop();
+							newsolid.editor.data.emplace(holder1, holder2);
+						}
+					}
 					continue;
 				}
 				else
@@ -228,8 +239,26 @@ VMF::VMF(KeyValuesQueue *kv)
 					continue;
 				}
 			}
-
-
+		}
+		else if (localq.front()->second == "group")
+		{
+			Group newgroup;
+			localq.pop(); // group
+			localq.pop(); // {
+			localq.pop(); // id
+			newgroup.data.emplace("id", localq.front()->second);
+			localq.pop(); // id value
+			localq.pop(); // editor
+			localq.pop(); // {
+			while (localq.front()->second != "}")
+			{
+				holder1 = localq.front()->second;
+				localq.pop();
+				holder2 = localq.front()->second;
+				localq.pop();
+				newgroup.editor.data.emplace(holder1, holder2);
+			}
+			localq.pop(); // }
 		}
 		else if (localq.front()->second == "hidden")
 		{
@@ -246,37 +275,18 @@ VMF::VMF(KeyValuesQueue *kv)
 		}
 		else
 		{
-			std::cout << "Matched none" << std::endl;
-			std::cout << "Token: " << localq.front()->second << std::endl;
+			if (localq.front()->second == "Entity")
+			{
+				break;
+			}
+			std::cout << "UNKNOWN TOKEN IN VMF" << localq.front()->second << std::endl;
+			localq.pop();
 		}
 	}
 
-	// Debug print
-	// print versioninfo
-	std::cout << "VersionInfo: " << std::endl;
-	std::map<std::string, std::string>::iterator it;
-	for (it = versioninfo.data.begin(); it != versioninfo.data.end(); it++)
-	{
-		std::cout << '"' << it->first << '"' << "    " << '"' << it->second << '"' << std::endl;
-	}
-	std::cout << std::endl;
+	// end read world
 
-	// print visgroups
-	std::cout << "Visgroups:" << std::endl;
-	for (int i = 0; i < visgroups.size(); i++)
-	{
-		visgroups.at(i).PrintVisgroup();
-		std::cout << std::endl;
-	}
-	std::cout << std::endl;
-
-	// print viewsettings
-	std::cout << "View Settings:" << std::endl;
-	for (it = viewsettings.data.begin(); it != viewsettings.data.end(); it++)
-	{
-		std::cout << '"' << it->first << '"' << "    " << '"' << it->second << '"' << std::endl;
-	}
-	std::cout << std::endl;
+	// read entities
 }
 
 VMF::Visgroup VMF::GetVisgroupFromQueue(std::queue<std::pair<KeyValuesQueue::KVToken, std::string>*>& qref)

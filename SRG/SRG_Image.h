@@ -31,6 +31,8 @@ public:
 private:
 	Chunk* ReadChunk(std::fstream &inputstream);
 	int CharArrayToInt(char ca[4]);
-	std::byte CharArrayToByte(char ca[1]);
-	bool CompareCharArrayAndLiteral(char* ca, const char* li, size_t cmpsize);
+	inline std::byte CharToByte(char ca);
+	inline bool CompareCharArrayAndLiteral(char* ca, const char* li, size_t cmpsize);
+	std::vector<std::byte> UIntToByteVector(unsigned int input);
+	std::vector<std::byte> CharArrayToByteVector(char* arr, size_t inpsize);
 };

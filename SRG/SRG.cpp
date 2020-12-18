@@ -17,9 +17,10 @@ int main()
     std::cout << "Squidski's Radar Generator; Version " << PROGVERSION << std::endl;
 
     std::fstream myfile;
-    std::string VMFPATH = "H:\\DriveBackup\\Maps\\analog\\de_analog_005.vmf";
+    //std::string VMFPATH = "H:\\DriveBackup\\Maps\\analog\\de_analog_005.vmf";
     //std::string VMFPATH = "H:\\OneDrive\\Frostbite\\VMF\\ski_160.vmf";
     //std::string VMFPATH = "C:\\Users\\Quinton\\Google Drive\\Desktop\\ski_160.vmf";
+    std::string VMFPATH = "C:\\Users\\Quinton\\Google Drive\\Desktop\\de_analog_005.vmf";
     std::cout << "Opening VMF..." << std::endl;
     myfile.open(VMFPATH, std::ios::in);
     if (!myfile.is_open())
@@ -49,7 +50,8 @@ int main()
 
 
     std::cout << "Loading background..." << std::endl;
-    const char* backgroundpath = "C:\\Users\\Quinton\\source\\repos\\SRG\\grid.png";
+    //const char* backgroundpath = "C:\\Users\\Quinton\\source\\repos\\SRG\\grid.png";
+    const char* backgroundpath = "C:\\Users\\Quinton\\source\\repos\\18swenskiq\\SRG\\grid.png";
     SRG_Image *background = new SRG_Image(backgroundpath);
 
 

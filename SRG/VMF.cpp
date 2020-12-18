@@ -2,7 +2,7 @@
 #include <iostream>
 #include "VMF.h"
 
-VMF::VMF(KeyValuesQueue *kv)
+VMF::VMF(KeyValuesQueue* kv, bool IsCollapseInstances = false)
 {
 	// Start traversing through the queue
 	std::queue<std::pair<KeyValuesQueue::KVToken, std::string>*> localq = kv->tokenqueue;
@@ -117,7 +117,6 @@ VMF::VMF(KeyValuesQueue *kv)
 	{
 		if (localq.front()->second == "entity")
 		{
-			std::cout << "ADDING ENT" << std::endl;
 			Entity newent;
 			localq.pop(); // entity
 			localq.pop(); // {
@@ -125,7 +124,6 @@ VMF::VMF(KeyValuesQueue *kv)
 			{
 				if (localq.front()->second == "connections")
 				{
-					std::cout << "ADDING CONNECTION" << std::endl;
 					localq.pop(); // connections
 					localq.pop(); // {
 					AddTokenPairsToMapFromQueueUntilString(newent.connections.data, "}", localq);
@@ -133,12 +131,10 @@ VMF::VMF(KeyValuesQueue *kv)
 				}
 				if (localq.front()->second == "solid")
 				{
-					std::cout << "ADDING SOLID" << std::endl;
 					newent.solids.emplace_back(GetSolidFromQueue(localq));
 				}
 				if (localq.front()->second == "editor")
 				{
-					std::cout << "ADDING EDITOR" << std::endl;
 					localq.pop(); // editor
 					localq.pop(); // {
 					AddTokenPairsToMapFromQueueUntilString(newent.editor.data, "}", localq);
@@ -170,9 +166,14 @@ VMF::VMF(KeyValuesQueue *kv)
 		}
 	}
 
-	// read cameras
-	localq.pop();
-	localq.pop();
+	// We can probably stop parsing the queue here, since I don't think we
+	// need cameras, cordon, or quickhide
+	if (IsCollapseInstances)
+	{
+		// TODO:
+		// Here we point to a function to load all instances and collapse them into
+		// the VMF tree
+	}
 
 }
 

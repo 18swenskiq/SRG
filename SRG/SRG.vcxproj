@@ -157,10 +157,12 @@
   <ItemGroup>
     <ClCompile Include="KeyValues.cpp" />
     <ClCompile Include="SRG.cpp" />
+    <ClCompile Include="SRG_Image.cpp" />
     <ClCompile Include="VMF.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="KeyValues.h" />
+    <ClInclude Include="SRG_Image.h" />
     <ClInclude Include="VMF.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

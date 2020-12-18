@@ -7,24 +7,12 @@
 class VMF
 {
 public:
-	VMF(KeyValuesQueue *kv);
+	VMF(KeyValuesQueue *kv, bool IsCollapseInstances);
 public:
 	class GenericMap
 	{
 	public:
 		std::map<std::string, std::string> data;
-	};
-
-	class Cordon : public GenericMap
-	{
-	public:
-		GenericMap box;
-	};
-
-	class Cordons : public GenericMap
-	{
-	public:
-		std::vector<Cordon> cordon;
 	};
 
 	class DispRowInfo : public GenericMap
@@ -87,8 +75,9 @@ public:
 	World world;
 	std::vector<Entity> entities;
 	// We can skip hidden items. if its hidden we don't care about it
-	GenericMap cameras;
-	Cordons cordons;
+	// we can skip cameras
+	// we can skip cordons
+	// we can skip quickhide
 
 private:
 	Visgroup GetVisgroupFromQueue(std::queue<std::pair<KeyValuesQueue::KVToken, std::string>*>& qcopy);

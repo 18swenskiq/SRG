@@ -24,12 +24,18 @@
     <ClCompile Include="VMF.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SRG_Image.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="VMF.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="KeyValues.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SRG_Image.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

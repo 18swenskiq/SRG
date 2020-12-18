@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include "SRG_Image.h"
 #include "KeyValues.h"
 #include "VMF.h"
 
@@ -16,9 +17,9 @@ int main()
     std::cout << "Squidski's Radar Generator; Version " << PROGVERSION << std::endl;
 
     std::fstream myfile;
-    //std::string VMFPATH = "H:\\DriveBackup\\Maps\\analog\\de_analog_005.vmf";
+    std::string VMFPATH = "H:\\DriveBackup\\Maps\\analog\\de_analog_005.vmf";
     //std::string VMFPATH = "H:\\OneDrive\\Frostbite\\VMF\\ski_160.vmf";
-    std::string VMFPATH = "C:\\Users\\Quinton\\Google Drive\\Desktop\\ski_160.vmf";
+    //std::string VMFPATH = "C:\\Users\\Quinton\\Google Drive\\Desktop\\ski_160.vmf";
     std::cout << "Opening VMF..." << std::endl;
     myfile.open(VMFPATH, std::ios::in);
     if (!myfile.is_open())
@@ -41,6 +42,15 @@ int main()
     KeyValuesQueue* kv = new KeyValuesQueue(filestrings);
 
     std::cout << "Parsing tokens..." << std::endl;
-    VMF *vmf = new VMF(kv);
-    std::cout << vmf->world.solids.at(4).id << std::endl;
+    VMF *vmf = new VMF(kv, false);
+    std::cout << "VMF successfully parsed into objects" << std::endl;
+
+    // TODO: Load models
+
+
+    std::cout << "Loading background..." << std::endl;
+    const char* backgroundpath = "C:\\Users\\Quinton\\source\\repos\\SRG\\grid.png";
+    SRG_Image *background = new SRG_Image(backgroundpath);
+
+
 }

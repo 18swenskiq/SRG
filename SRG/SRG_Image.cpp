@@ -1,7 +1,8 @@
 #include "SRG_Image.h"
 #include <iostream>
 #include <string>
-
+#include <streambuf>
+#include "zstr.hpp"
 
 // Loads a PNG image from path
 SRG_Image::SRG_Image(const char* background_path)
@@ -29,6 +30,16 @@ SRG_Image::SRG_Image(const char* background_path)
 	myfile.close();
 
 	std::cout << datachunks.size() << std::endl;
+	for (int i = 0; i < this->datachunks.size(); i++)
+	{
+		if (CompareCharArrayAndLiteral(datachunks.at(i)->type, "IDAT", 4))
+		{
+			t->write(ByteVectorToCharArray(datachunks.at(i)->data), datachunks.at(i)->data.size());
+		}
+	}
+	
+	auto t = new std::basic_streambuf<char>();
+	zstr::istreambuf(t, );
 }
 
 SRG_Image::Chunk* SRG_Image::ReadChunk(std::fstream& inputstream)
@@ -126,9 +137,23 @@ inline std::byte SRG_Image::CharToByte(char ca)
 
 int SRG_Image::CharArrayToInt(char ca[4])
 {
-	unsigned int newint = 0;
-	newint = ((ca[0] << 24) | (ca[1] << 16) | (ca[2] << 8) | (ca[3] << 0));
+	int newint = 0;
+	newint = (ca[0] << 24);
+	newint = (newint | (ca[1] << 16));
+	newint = (newint | (ca[2] << 8));
+	newint = (newint | (ca[3] & 255));
+	std::cout << std::endl;
 	return newint;
+}
+
+char* SRG_Image::ByteVectorToCharArray(std::vector<std::byte> bv)
+{
+	char* ret = (char*)malloc(sizeof(char) * bv.size());
+	for (int i = 0; i < bv.size(); i++)
+	{
+		ret[i] = (char)bv.at(i);
+	}
+	return ret;
 }
 
 

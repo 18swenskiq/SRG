@@ -27,6 +27,7 @@ public:
 	std::byte compressionmethod;
 	std::byte filtermethod;
 	std::byte interlacemethod;
+	std::vector<std::byte> pixeldata;
 
 private:
 	Chunk* ReadChunk(std::fstream &inputstream);
@@ -35,4 +36,5 @@ private:
 	inline bool CompareCharArrayAndLiteral(char* ca, const char* li, size_t cmpsize);
 	std::vector<std::byte> UIntToByteVector(unsigned int input);
 	std::vector<std::byte> CharArrayToByteVector(char* arr, size_t inpsize);
+	char* ByteVectorToCharArray(std::vector<std::byte> bv);
 };

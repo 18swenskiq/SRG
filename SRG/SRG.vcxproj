@@ -163,7 +163,10 @@
   <ItemGroup>
     <ClInclude Include="KeyValues.h" />
     <ClInclude Include="SRG_Image.h" />
+    <ClInclude Include="strict_fstream.hpp" />
     <ClInclude Include="VMF.h" />
+    <ClInclude Include="zstr.hpp" />
+    <ClInclude Include="zstr_make_unique_polyfill.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

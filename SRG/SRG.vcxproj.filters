@@ -38,5 +38,14 @@
     <ClInclude Include="SRG_Image.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="strict_fstream.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="zstr.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="zstr_make_unique_polyfill.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -37,9 +37,8 @@ SRG_Image::SRG_Image(const char* background_path)
 			t->write(ByteVectorToCharArray(datachunks.at(i)->data), datachunks.at(i)->data.size());
 		}
 	}
-	
-	auto t = new std::basic_streambuf<char>();
-	zstr::istreambuf(t, );
+	std::istream is();
+	zstr::istreambuf zsbuf(is.rdbuf(), 1 << 16, true);
 }
 
 SRG_Image::Chunk* SRG_Image::ReadChunk(std::fstream& inputstream)

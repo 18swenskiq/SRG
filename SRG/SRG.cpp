@@ -2,9 +2,12 @@
 #include <fstream>
 #include "KeyValues.h"
 #include "VMF.h"
+#include "ImageWriteBuffer.h"
 
 #define STB_IMAGE_IMPLEMENTATION
+#define STB_IMAGE_WRITE_IMPLEMENTATION
 #include "stb_image.h"
+#include "stb_image_write.h"
 
 #define PROGVERSION "beta .1"
 
@@ -51,6 +54,7 @@ int main()
     // TODO: Load models
 
 
+    // Load background
     std::cout << "Loading background..." << std::endl;
     const char* backgroundpath = "C:\\Users\\Quinton\\source\\repos\\SRG\\grid.png";
     //const char* backgroundpath = "C:\\Users\\Quinton\\source\\repos\\18swenskiq\\SRG\\grid.png";
@@ -58,7 +62,59 @@ int main()
     int bgheight;
     int bgchannels;
     unsigned char* data = stbi_load(backgroundpath, &bgwidth, &bgheight, &bgchannels, 0);
-    std::cout << *data << std::endl;
+    ImageWriteBuffer* imb = new ImageWriteBuffer();
+
+    // TODO: check for errors
+
+    
+    // Put brushes on image
+    // get visgroup IDs
+    int vg_layoutid = 0;
+    int vg_coverid = 0;
+    int vg_maskid = 0;
+    int vg_overlapid = 0;
+    for (int i = 0; i < vmf->visgroups.size(); i++)
+    {
+        std::map<std::string, std::string> itermap = vmf->visgroups.at(i).data;
+        std::string visgroupname = itermap.find("name")->second;
+        if (visgroupname.compare("tar_layout") == 0)
+        {
+            vg_layoutid = std::stoi(itermap.find("visgroupid")->second);
+        }
+        else if (visgroupname.compare("tar_cover") == 0)
+        {
+            vg_coverid = std::stoi(itermap.find("visgroupid")->second);
+        }
+        else if (visgroupname.compare("tar_mask") == 0)
+        {
+            vg_maskid = std::stoi(itermap.find("visgroupid")->second);
+        }
+        else if (visgroupname.compare("tar_overlap") == 0)
+        {
+            vg_overlapid = std::stoi(itermap.find("visgroupid")->second);
+        }
+    }
+
+    // iterate over each world brush and prepare each brush for writing
+    for (VMF::Solid j : vmf->world.solids)
+    {
+        auto it = j.editor.data.find("visgroupid");
+        if (it == j.editor.data.end()) continue; // If the brush isn't part of a visgroup, don't need it
+
+        if(std::stoi(it->second) == vg_layoutid) 
+
+    }
+
+
+
+
+
+    // Write out image
+    std::cout << "Writing png..." << std::endl;
+    const char* savepath = "C:\\Users\\Quinton\\source\\repos\\SRG\\grid_new.png";
+    stbi_write_png(savepath, bgwidth, bgheight, bgchannels, data, 0);
+
+
 
 
 }

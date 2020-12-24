@@ -24,9 +24,6 @@
     <ClCompile Include="VMF.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SRG_Image.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="VMF.h">
@@ -35,16 +32,7 @@
     <ClInclude Include="KeyValues.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SRG_Image.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="strict_fstream.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="zstr.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="zstr_make_unique_polyfill.h">
+    <ClInclude Include="stb_image.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

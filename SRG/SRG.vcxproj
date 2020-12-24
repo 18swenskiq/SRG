@@ -157,16 +157,12 @@
   <ItemGroup>
     <ClCompile Include="KeyValues.cpp" />
     <ClCompile Include="SRG.cpp" />
-    <ClCompile Include="SRG_Image.cpp" />
     <ClCompile Include="VMF.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="KeyValues.h" />
-    <ClInclude Include="SRG_Image.h" />
-    <ClInclude Include="strict_fstream.hpp" />
+    <ClInclude Include="stb_image.h" />
     <ClInclude Include="VMF.h" />
-    <ClInclude Include="zstr.hpp" />
-    <ClInclude Include="zstr_make_unique_polyfill.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

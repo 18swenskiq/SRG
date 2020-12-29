@@ -2,8 +2,18 @@
 #include <string>
 #include <vector>
 
-static class VMF_Utils
+static class Utils
 {
+
+public:
+	enum block_type
+	{
+		Layout,
+		Cover,
+		Mask,
+		Overlap
+	};
+
 	struct planevertspos
 	{
 		float vert1pos[3];

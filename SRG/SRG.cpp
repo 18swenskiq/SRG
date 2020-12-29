@@ -3,6 +3,7 @@
 #include "KeyValues.h"
 #include "VMF.h"
 #include "ImageWriteBuffer.h"
+#include "Utils.h"
 
 #define STB_IMAGE_IMPLEMENTATION
 #define STB_IMAGE_WRITE_IMPLEMENTATION
@@ -62,7 +63,7 @@ int main()
     int bgheight;
     int bgchannels;
     unsigned char* data = stbi_load(backgroundpath, &bgwidth, &bgheight, &bgchannels, 0);
-    ImageWriteBuffer* imb = new ImageWriteBuffer();
+    ImageWriteBuffer* imb = new ImageWriteBuffer(bgwidth, bgheight);
 
     // TODO: check for errors
 
@@ -101,7 +102,10 @@ int main()
         auto it = j.editor.data.find("visgroupid");
         if (it == j.editor.data.end()) continue; // If the brush isn't part of a visgroup, don't need it
 
-        if(std::stoi(it->second) == vg_layoutid) 
+        if (std::stoi(it->second) == vg_layoutid)
+        {
+            imb->AddSolidToBuffer(j, Utils::block_type::Layout);
+        }
 
     }
 

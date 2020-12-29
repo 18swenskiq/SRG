@@ -27,6 +27,9 @@
     <ClCompile Include="ImageWriteBuffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ImageWriteObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="VMF.h">
@@ -47,7 +50,7 @@
     <ClInclude Include="ImageWriteObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="VMF_Utils.h">
+    <ClInclude Include="Utils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

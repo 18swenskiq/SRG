@@ -156,6 +156,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ImageWriteBuffer.cpp" />
+    <ClCompile Include="ImageWriteObject.cpp" />
     <ClCompile Include="KeyValues.cpp" />
     <ClCompile Include="SRG.cpp" />
     <ClCompile Include="VMF.cpp" />
@@ -167,7 +168,7 @@
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="stb_image_write.h" />
     <ClInclude Include="VMF.h" />
-    <ClInclude Include="VMF_Utils.h" />
+    <ClInclude Include="Utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

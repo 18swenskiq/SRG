@@ -22,7 +22,7 @@ public:
 	};
 
 public:
-	static std::vector<planevertspos> GetVertexFloatVectorFromPlaneString(std::string planestring)
+	static planevertspos GetVertexFloatVectorFromPlaneString(std::string planestring)
 	{
 
 	}

@@ -7,7 +7,7 @@ class ImageWriteBuffer
 {
 public:
 	ImageWriteBuffer(int width, int height);
-	void AddSolidToBuffer(VMF::Solid insolid, Utils::block_type bt);
+	void AddSolidToBuffer(VMF::Solid insolid, enum Utils::block_type bt);
 	std::vector<ImageWriteObject> obj_list;
 
 private:

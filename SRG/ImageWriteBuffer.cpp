@@ -6,7 +6,7 @@ ImageWriteBuffer::ImageWriteBuffer(int width, int height)
 	imageh(height)
 {}
 
-void ImageWriteBuffer::AddSolidToBuffer(VMF::Solid insolid, Utils::block_type bt)
+void ImageWriteBuffer::AddSolidToBuffer(VMF::Solid insolid, enum Utils::block_type bt)
 {
 	for (auto s : insolid.sides)
 	{
